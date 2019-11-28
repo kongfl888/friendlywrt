@@ -8,7 +8,12 @@
 ifeq ($(SUBTARGET),cortexa53)
 
 define Device/sun50i-h5-nanopi-neo-plus2
+  DEVICE_VENDOR := FriendlyARM
+  DEVICE_MODEL := NanoPi NEO Plus2
   DEVICE_TITLE:=Nanopi NEO Plus2 (H5)
+  DEVICE_PACKAGES:=kmod-rtc-sunxi \
+	kmod-leds-gpio kmod-ledtrig-heartbeat \
+	kmod-brcmfmac brcmfmac-firmware-43430-sdio wpad-mini
   SUPPORTED_DEVICES:=nanopi-neo-plus2
   SUNXI_DTS:=allwinner/sun50i-h5-nanopi-neo-plus2
   KERNEL_NAME := Image
