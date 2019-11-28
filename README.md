@@ -1,3 +1,4 @@
+```
   _______                     ________        __
  |       |.-----.-----.-----.|  |  |  |.----.|  |_
  |   -   ||  _  |  -__|     ||  |  |  ||   _||   _|
@@ -30,5 +31,9 @@ chosen applications for your target system.
 Sunshine!
 	Your OpenWrt Community
 	http://www.openwrt.org
+```
+
+# How to Build OpenWrt for FriendlyElec devices
+See [FriendlyElec WiKi](http://wiki.friendlyarm.com/wiki/index.php/How_to_Build_OpenWrt)
 
 
