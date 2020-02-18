@@ -1,24 +1,29 @@
 #!/bin/bash
 
-if [ ! -d /sys/class/pwm/pwmchip1/pwm0 ]; then
-    echo 0 > /sys/class/pwm/pwmchip1/export
+if [ ! -d /sys/class/pwm/pwmchip0 ]; then
+    echo "this model does not support pwm."
+    exit 1
+fi
+
+if [ ! -d /sys/class/pwm/pwmchip0/pwm0 ]; then
+    echo -n 0 > /sys/class/pwm/pwmchip0/export
 fi
 sleep 1
-while [ ! -d /sys/class/pwm/pwmchip1/pwm0 ];
+while [ ! -d /sys/class/pwm/pwmchip0/pwm0 ];
 do
     sleep 1
 done
-ISENABLE=`cat /sys/class/pwm/pwmchip1/pwm0/enable`
+ISENABLE=`cat /sys/class/pwm/pwmchip0/pwm0/enable`
 if [ $ISENABLE -eq 1 ]; then
-    echo 0 > /sys/class/pwm/pwmchip1/pwm0/enable
+    echo -n 0 > /sys/class/pwm/pwmchip0/pwm0/enable
 fi
-echo 50000 > /sys/class/pwm/pwmchip1/pwm0/period
-echo 1 > /sys/class/pwm/pwmchip1/pwm0/enable
+echo -n 50000 > /sys/class/pwm/pwmchip0/pwm0/period
+echo -n 1 > /sys/class/pwm/pwmchip0/pwm0/enable
 
 # max speed run 5s
-echo 46990 > /sys/class/pwm/pwmchip1/pwm0/duty_cycle
+echo -n 46990 > /sys/class/pwm/pwmchip0/pwm0/duty_cycle
 sleep 5
-echo 25000 > /sys/class/pwm/pwmchip1/pwm0/duty_cycle
+echo -n 25000 > /sys/class/pwm/pwmchip0/pwm0/duty_cycle
 
 # declare -a CpuTemps=(55000 43000 38000 32000)
 # declare -a PwmDutyCycles=(1000 20000 30000 45000)
@@ -50,9 +55,9 @@ do
 		PERCENT=${Percents[$i]}
 	fi
 
-	echo $DUTY > /sys/class/pwm/pwmchip1/pwm0/duty_cycle;
+	echo -n $DUTY > /sys/class/pwm/pwmchip0/pwm0/duty_cycle;
 
-        # echo "temp: $temp, duty: $DUTY, ${PERCENT}%"
+        echo "temp: $temp, duty: $DUTY, ${PERCENT}%"
         # cat /sys/devices/system/cpu/cpu*/cpufreq/cpuinfo_cur_freq
 
 	sleep 2s;
