@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ ! -d /sys/class/pwm/pwmchip1 ]; then
+    echo "this model does not support pwm."
+    exit 1
+fi
 if [ ! -d /sys/class/pwm/pwmchip1/pwm0 ]; then
     echo 0 > /sys/class/pwm/pwmchip1/export
 fi
