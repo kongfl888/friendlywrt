@@ -43,9 +43,8 @@ enable_swap() {
 }
 
 HASSWAP=`swapon -s`
-if [ "x$HASSWAP" = "x" ]; then
+if ! grep swapfile ${HASSWAP} >/dev/null 2>&1; then
     enable_swap
 else
     echo "swap has been enabled."
 fi
-
