@@ -1,8 +1,7 @@
-src-git packages https://git.openwrt.org/feed/packages.git
-src-git luci https://git.openwrt.org/project/luci.git
-src-git routing https://git.openwrt.org/feed/routing.git
-src-git telephony https://git.openwrt.org/feed/telephony.git
-src-git freifunk https://github.com/freifunk/openwrt-packages.git
+src-git packages https://git.openwrt.org/feed/packages.git^54266c99b2a2e37a4c01b02ae74346874db7003c
+src-git luci https://github.com/friendlyarm/friendlywrt_project_luci^bb021b4b9097ad332ab40bce2a1c239d9fcf225b
+src-git routing https://git.openwrt.org/feed/routing.git^31407945f91112b8119f91b6437476f21fe1f6c0
+src-git telephony https://git.openwrt.org/feed/telephony.git^fc9aa2b3ea37a280f1380ccfa059907fd68e2cfe
 #src-git video https://github.com/openwrt/video.git
 #src-git targets https://github.com/openwrt/targets.git
 #src-git management https://github.com/openwrt-management/packages.git
