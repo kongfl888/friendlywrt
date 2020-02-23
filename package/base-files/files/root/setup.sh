@@ -2,6 +2,8 @@
 
 # THIS SCIPRT ONLY RUN ONCE. Base on /etc/firstboot_${board}
 
+NEED_RESTART_SERVICE=0
+
 setup_ssid()
 {
     local r=$1
@@ -80,11 +82,11 @@ if [ -f /sys/class/sunxi_info/sys_info ]; then
 fi
 
 # update /etc/config/network
-WAN_IF=`uci get network.wan.ifname`
-if [ "x${WAN_IF}" = "xeth0" ]; then
-	uci set network.wan.dns=8.8.8.8
-	uci commit
-fi
+# WAN_IF=`uci get network.wan.ifname`
+# if [ "x${WAN_IF}" = "xeth0" ]; then
+# 	uci set network.wan.dns=8.8.8.8
+# 	uci commit
+# fi
 
 WIFI_NUM=`find /sys/class/net/ -name wlan* | wc -l`
 if [ ${WIFI_NUM} -gt 0 ]; then
@@ -105,10 +107,14 @@ EOF
     for i in `seq 0 ${WIFI_NUM}`; do
         setup_ssid radio${i}
     done
+    NEED_RESTART_SERVICE=1
 fi
 
-/etc/init.d/led restart
-/etc/init.d/network restart
-/etc/init.d/dnsmasq restart
+if [ ${NEED_RESTART_SERVICE} -eq 1 ]; then
+    /etc/init.d/led restart
+    /etc/init.d/network restart
+    /etc/init.d/dnsmasq restart
+    logger "setup.sh: restart network services"
+fi
 
 logger "done"
