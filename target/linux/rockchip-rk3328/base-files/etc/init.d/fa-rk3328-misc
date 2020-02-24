@@ -4,6 +4,6 @@ START=96
  
 start() {
     [ -f /proc/irq/28/smp_affinity ] && echo 8 > /proc/irq/28/smp_affinity
-    echo performance > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
+    echo ondemand > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
 }
 
