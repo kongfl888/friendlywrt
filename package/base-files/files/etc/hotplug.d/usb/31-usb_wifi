@@ -2,14 +2,8 @@
 
 #logger ACTION=$ACTION DEVPATH=$DEVPATH SUBSYSTEM=$SUBSYSTEM DEVTYPE=$DEVTYPE PRODUCT=$PRODUCT MODALIAS=$MODALIAS
 
-PLATFORM='sun8iw7p1|sun50iw2p1'
-if ! grep -E $PLATFORM /sys/class/sunxi_info/sys_info -q; then
-    logger "only support $PLATFORM. exiting..."
-    exit 0
-fi
-
 FE_DIR=/root/.friendlyelec/
-if [ "${DEVTYPE}" = usb_device -a "${PRODUCT}" = "bda/c811/200" ]; then
+if [ "${DEVTYPE}" = usb_device ] && { [ "${PRODUCT}" = "bda/c811/200" ] || [ "${PRODUCT}" = "bda/c820/200" ] ;}; then
     MODULE=rtl8821cu
     TARGET=wlan${MODULE}
 
