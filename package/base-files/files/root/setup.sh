@@ -117,4 +117,13 @@ if [ ${NEED_RESTART_SERVICE} -eq 1 ]; then
     logger "setup.sh: restart network services"
 fi
 
+# fix netdata issue
+[ -d /usr/share/netdata/web ] && chown -R root:root /usr/share/netdata/web
+
+# disable lan ipv6
+uci set 'network.lan.ipv6=off'
+uci set 'dhcp.lan.dhcpv6=disabled'
+/etc/init.d/odhcpd disable
+uci commit
+
 logger "done"
