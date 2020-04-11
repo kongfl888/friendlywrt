@@ -124,12 +124,6 @@ fi
 uci set 'network.lan.ipv6=off'
 uci set 'dhcp.lan.dhcpv6=disabled'
 /etc/init.d/odhcpd disable
-
-if [ -d /www/luci-static/argon ]; then
-    # set theme
-    uci set luci.main.mediaurlbase='/luci-static/argon'
-    uci set luci.themes.Argon='/luci-static/argon'
-    uci commit
-fi
+uci commit
 
 logger "done"
