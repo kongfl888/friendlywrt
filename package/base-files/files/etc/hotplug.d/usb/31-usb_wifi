@@ -1,10 +1,18 @@
 #!/bin/sh
 
-#logger ACTION=$ACTION DEVPATH=$DEVPATH SUBSYSTEM=$SUBSYSTEM DEVTYPE=$DEVTYPE PRODUCT=$PRODUCT MODALIAS=$MODALIAS
+logger ACTION=$ACTION DEVPATH=$DEVPATH SUBSYSTEM=$SUBSYSTEM DEVTYPE=$DEVTYPE PRODUCT=$PRODUCT MODALIAS=$MODALIAS
 
 FE_DIR=/root/.friendlyelec/
-if { [ "${DEVTYPE}" = usb_device ] || [ "${DEVTYPE}" = usb_interface ] ;} && { [ "${PRODUCT}" = "bda/c811/200" ] || [ "${PRODUCT}" = "bda/c820/200" ] ;}; then
-    MODULE=rtl8821cu
+if { [ "${DEVTYPE}" = usb_device ] || [ "${DEVTYPE}" = usb_interface ] ;} \
+    && { [ "${PRODUCT}" = "bda/b812/210" ] || [ "${PRODUCT}" = "bda/c811/200" ] || [ "${PRODUCT}" = "bda/c820/200" ] ;}; then
+    MODULE=Realtek
+    if [ "${PRODUCT}" = "bda/b812/210" ]; then
+        MODULE=rtl8822bu
+    elif [ "${PRODUCT}" = "bda/c811/200" ]; then
+        MODULE=rtl8821cu
+    elif [ "${PRODUCT}" = "bda/c820/200" ]; then
+	    MODULE=realtek-c820
+    fi
     TARGET=wlan${MODULE}
 
     WIFI_PATH=`echo ${DEVPATH} | cut -d/ -f 3-`
@@ -31,9 +39,15 @@ if { [ "${DEVTYPE}" = usb_device ] || [ "${DEVTYPE}" = usb_interface ] ;} && { [
 
             # Enable wifi and change ssid
             if [ -n "`uci get wireless.${RADIO}`" ]; then
+
+                # FIXME: Since these USB wifi is too slow in 5g mode, use 2.4G instead
                 uci batch <<EOF
+set wireless.${RADIO}.hwmode='11g'
+set wireless.${RADIO}.htmode='HT20'
+set wireless.${RADIO}.channel='7'
+set wireless.${RADIO}.country='00'
 set wireless.${RADIO}.disabled=0
-set wireless.default_${RADIO}.ssid=${MODULE}-${ADDRESS}
+set wireless.default_${RADIO}.ssid=FriendlyWrt-${ADDRESS}
 set wireless.default_${RADIO}.encryption=psk2
 set wireless.default_${RADIO}.key=password
 EOF
