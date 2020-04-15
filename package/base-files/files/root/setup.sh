@@ -118,9 +118,9 @@ if [ ${ENABLE_SIMPLIFIED_SETTINGS} -eq 1 ]; then
         uci set samba.@samba[0].description='FriendlyWrt'
         uci set samba.@samba[0].homes='1'
         # samba: allow root access
-        sed -i -e "/\sinvalid users\s/s/^/#/" /etc/samba/smb.conf.template
+        sed -i -e "/^\s*invalid users\s/s/^/#/" /etc/samba/smb.conf.template
         # samba: accessible by lan and wan
-        sed -i -e "/\sinterfaces\s/s/^/#/" /etc/samba/smb.conf.template
+        sed -i -e "/^\s*interfaces\s/s/^/#/" /etc/samba/smb.conf.template
         # samba: set default password to 'password'
         echo "root:0:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX:8846F7EAEE8FB117AD06BDD830B7586C:[U          ]:LCT-00000001:" > /etc/samba/smbpasswd
         sed -i '1 i ' /etc/samba/smb.conf.template
