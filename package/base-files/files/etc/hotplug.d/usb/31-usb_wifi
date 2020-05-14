@@ -4,12 +4,14 @@ logger ACTION=$ACTION DEVPATH=$DEVPATH SUBSYSTEM=$SUBSYSTEM DEVTYPE=$DEVTYPE PRO
 
 FE_DIR=/root/.friendlyelec/
 if { [ "${DEVTYPE}" = usb_device ] || [ "${DEVTYPE}" = usb_interface ] ;} \
-    && { [ "${PRODUCT}" = "bda/b812/210" ] || [ "${PRODUCT}" = "bda/c811/200" ] || [ "${PRODUCT}" = "bda/c820/200" ] ;}; then
-    MODULE=Realtek
+    && { [ "${PRODUCT}" = "bda/8812/0" ] || [ "${PRODUCT}" = "bda/b812/210" ] || [ "${PRODUCT}" = "bda/c811/200" ] || [ "${PRODUCT}" = "bda/c820/200" ] ;}; then
+        MODULE=Realtek
     if [ "${PRODUCT}" = "bda/b812/210" ]; then
         MODULE=rtl8822bu
     elif [ "${PRODUCT}" = "bda/c811/200" ]; then
         MODULE=rtl8821cu
+    elif [ "${PRODUCT}" = "bda/8812/0" ]; then
+        MODULE=rtl8812au
     elif [ "${PRODUCT}" = "bda/c820/200" ]; then
 	    MODULE=realtek-c820
     fi
@@ -39,7 +41,6 @@ if { [ "${DEVTYPE}" = usb_device ] || [ "${DEVTYPE}" = usb_interface ] ;} \
 
             # Enable wifi and change ssid
             if [ -n "`uci get wireless.${RADIO}`" ]; then
-
                 # FIXME: Since these USB wifi is too slow in 5g mode, use 2.4G instead
                 uci batch <<EOF
 set wireless.${RADIO}.hwmode='11g'
