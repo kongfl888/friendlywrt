@@ -12,6 +12,9 @@ case "$(board_name)" in
 |"friendlyelec,nanopi-r2s")
     ucidef_set_interfaces_lan_wan "eth1" "eth0"
 	;;
+"friendlyelec,nanopi-neo3")
+    ucidef_set_interface_wan 'eth0'
+    ;;
 *)
 	ucidef_set_interface_wan 'eth0'
 	;;
