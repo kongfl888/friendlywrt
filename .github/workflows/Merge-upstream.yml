@@ -39,17 +39,12 @@ jobs:
         git fetch friendlyarm master-v19.07.1
         git reset --hard friendlyarm/master-v19.07.1
         git remote add upstream https://github.com/openwrt/openwrt.git
-        git fetch upstream
-        git branch v19073 v19.07.3
-        git rebase v19073 -X theirs
-        rm -f target/linux/rockchip-rk3328/patches-4.14/0001-net-thunderx-workaround-BGX-TX-Underflow-issue.patch || echo ""
-        rm -f target/linux/rockchip-rk3328/patches-4.14/0001-net-thunderx-add-support-for-rgmii-internal-delay-mo.patch || echo ""
-        git add .
-        git commit -m"Remove thunderx patch" || echo ""
-        git branch -m master-v19.07.3
-
+        git fetch upstream master
+        git branch opmaster upstream/master
+        git rebase adc1a9a3676b8d7be1b48b5aed185a94d8e42728^ --onto opmaster
+        git reset --hard opmaster
     - name: Push Commits
       env:
-        DOWNSTREAM_BRANCH: master-v19.07.3
+        DOWNSTREAM_BRANCH: master
       run:  |
         git push --force-with-lease origin $DOWNSTREAM_BRANCH
