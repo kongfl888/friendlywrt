@@ -1,6 +1,6 @@
 # [K] (c) 2020
 
-name: Merge
+name: Test
 
 on:
   push:
@@ -24,7 +24,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
       with:
-        ref: master
+        ref: snapshot
         fetch-depth: 0
         lfs: true
 
@@ -34,17 +34,13 @@ jobs:
         git config --global user.name "kongfl888"
     - name: Load upstream commits
       run:  |
-        git checkout master
-        git remote add friendlyarm https://github.com/friendlyarm/friendlywrt.git
-        git fetch friendlyarm master-v19.07.1
-        git reset --hard friendlyarm/master-v19.07.1
+        git checkout snapshot
+        git reset --hard origin/master-20200707
         git remote add upstream https://github.com/openwrt/openwrt.git
         git fetch upstream master
-        git branch opmaster upstream/master
-        git rebase adc1a9a3676b8d7be1b48b5aed185a94d8e42728^ --onto opmaster
-        git reset --hard opmaster
+        git rebase upstream/master
     - name: Push Commits
       env:
-        DOWNSTREAM_BRANCH: master
+        DOWNSTREAM_BRANCH: snapshot
       run:  |
         git push --force-with-lease origin $DOWNSTREAM_BRANCH
