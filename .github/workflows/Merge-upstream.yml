@@ -40,7 +40,7 @@ jobs:
         git reset --hard friendlyarm/master-v19.07.1
         git remote add upstream https://github.com/openwrt/openwrt.git
         git fetch upstream master
-        git rebase upstream/master
+        git rebase upstream/master -X theirs
     - name: Push Commits
       env:
         DOWNSTREAM_BRANCH: master
