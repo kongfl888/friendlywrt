@@ -1,0 +1,43 @@
+# [K] (c) 2020
+
+name: Merge
+
+on:
+  push:
+    branches:
+      - test
+    paths:
+      - '.github/workflows/Merge-upstream.yml'
+  watch:
+    types:
+      - 'started'
+
+jobs:
+  merge:
+
+    runs-on: ubuntu-latest
+    if: github.repository == 'kongfl888/friendlywrt'
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@master
+      with:
+        ref: master-v19.07.1
+        fetch-depth: 0
+        lfs: true
+
+    - name: Set git identity
+      run : |
+        git config --global user.email "kongfl888@outlook.com"
+        git config --global user.name "kongfl888"
+    - name: Load upstream commits
+      run:  |
+        git checkout master-v19.07.1
+        git remote add friendlyarm https://github.com/friendlyarm/friendlywrt.git
+        git fetch friendlyarm master-v19.07.1
+        git reset --hard friendlyarm/master-v19.07.1
+    - name: Push Commits
+      env:
+        DOWNSTREAM_BRANCH: master-v19.07.1
+      run:  |
+        git push --force-with-lease origin $DOWNSTREAM_BRANCH
