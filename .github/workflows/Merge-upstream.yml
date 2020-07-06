@@ -8,6 +8,8 @@ on:
       - test
     paths:
       - '.github/workflows/Merge-upstream.yml'
+  schedule:
+    - cron: '10 */8 * * *'
   watch:
     types:
       - 'started'
@@ -22,7 +24,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
       with:
-        ref: master-v19.07.1
+        ref: master
         fetch-depth: 0
         lfs: true
 
@@ -32,12 +34,15 @@ jobs:
         git config --global user.name "kongfl888"
     - name: Load upstream commits
       run:  |
-        git checkout master-v19.07.1
+        git checkout master
         git remote add friendlyarm https://github.com/friendlyarm/friendlywrt.git
         git fetch friendlyarm master-v19.07.1
         git reset --hard friendlyarm/master-v19.07.1
+        git remote add upstream https://github.com/openwrt/openwrt.git
+        git fetch upstream master
+        git rebase upstream/master
     - name: Push Commits
       env:
-        DOWNSTREAM_BRANCH: master-v19.07.1
+        DOWNSTREAM_BRANCH: master
       run:  |
         git push --force-with-lease origin $DOWNSTREAM_BRANCH
