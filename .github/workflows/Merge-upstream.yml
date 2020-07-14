@@ -10,9 +10,6 @@ on:
       - '.github/workflows/Merge-upstream.yml'
   schedule:
     - cron: '10 8 * * *'
-  watch:
-    types:
-      - 'started'
 
 jobs:
   merge:
