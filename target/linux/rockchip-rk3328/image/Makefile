@@ -18,4 +18,9 @@ define Image/Build
 	cp $(KDIR)/vmlinux $(BIN_DIR)/$(IMG_PREFIX)-vmlinux
 endef
 
+define Device/Default
+    PROFILES := Default
+    SUPPORTED_DEVICES :=friendlyelec,nanopi-r2
+endef
+
 $(eval $(call BuildImage))
