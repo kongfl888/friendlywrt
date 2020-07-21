@@ -1,7 +1,7 @@
-From acc0095babd52cc3e6e36f1d8fbe6fab1195655b Mon Sep 17 00:00:00 2001
-From: Lawrence-Tang <tangzongsheng@gmail.com>
-Date: Wed, 19 Feb 2020 20:14:22 +0800
-Subject: [PATCH 16/53] target/linux/rockchip-rk3328: remove needless patch
+From fb304bbf083f8966c133bb85c45749f5f15648ae Mon Sep 17 00:00:00 2001
+From: kongfl888 <kongfl888@outlook.com>
+Date: Tue, 7 Jul 2020 05:27:31 +0800
+Subject: [PATCH 50/53] Remove thunderx patch.
 
 ---
  ...x-add-support-for-rgmii-internal-delay-mo.patch | 139 ---------------------

@@ -1,7 +1,7 @@
 From de589c60e49290b7d679dc92fe47c47f96068aff Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Sun, 23 Feb 2020 16:43:34 +0800
-Subject: [PATCH 24/48] feeds: update to the latest commit
+Subject: [PATCH 24/53] feeds: update to the latest commit
 
 ---
  feeds.conf.default | 2 +-

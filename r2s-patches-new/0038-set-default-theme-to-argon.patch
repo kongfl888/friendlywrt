@@ -1,7 +1,7 @@
 From ccc731b2ada519c1e828aa1b1cb0138b480a1a44 Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Fri, 10 Apr 2020 14:37:19 +0800
-Subject: [PATCH 38/48] set default theme to argon
+Subject: [PATCH 38/53] set default theme to argon
 
 ---
  package/base-files/files/root/setup.sh | 8 +++++++-
