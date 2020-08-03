@@ -1,4 +1,4 @@
-From e87625f0e0097cb7f1cfd59e42dfb0296f16b664 Mon Sep 17 00:00:00 2001
+From 97e3d9d0e153a4ae573d6192c81ca009514fa7ff Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Thu, 28 Nov 2019 14:16:20 +0800
 Subject: [PATCH 01/53] Apply the changes from 18.06.1 commit-id:
@@ -6,7 +6,6 @@ Subject: [PATCH 01/53] Apply the changes from 18.06.1 commit-id:
 
 ---
  .gitignore                                         |    1 +
- README.md                                          |   39 +
  friendlyelec/.gitignore                            |    3 +
  friendlyelec/build.sh                              |   63 +
  friendlyelec/config_nanopi-h3.seed                 |  128 +
@@ -59,8 +58,7 @@ Subject: [PATCH 01/53] Apply the changes from 18.06.1 commit-id:
  .../linux/sunxi/base-files/etc/board.d/02_network  |   27 +
  target/linux/sunxi/base-files/usr/bin/cpu_freq     |  120 +
  target/linux/sunxi/image/cortexa53.mk              |    3 +
- 54 files changed, 6523 insertions(+), 11 deletions(-)
- create mode 100644 README.md
+ 53 files changed, 6484 insertions(+), 11 deletions(-)
  create mode 100644 friendlyelec/.gitignore
  create mode 100644 friendlyelec/build.sh
  create mode 100644 friendlyelec/config_nanopi-h3.seed
@@ -108,7 +106,7 @@ Subject: [PATCH 01/53] Apply the changes from 18.06.1 commit-id:
  create mode 100644 target/linux/sunxi/base-files/usr/bin/cpu_freq
 
 diff --git a/.gitignore b/.gitignore
-index 6549af83be..7f865f3c8a 100644
+index b6bfe1a525..481c786351 100644
 --- a/.gitignore
 +++ b/.gitignore
 @@ -3,6 +3,7 @@
@@ -119,51 +117,6 @@ index 6549af83be..7f865f3c8a 100644
  /.config
  /.config.old
  /bin
-diff --git a/README.md b/README.md
-new file mode 100644
-index 0000000000..92c5d75a95
---- /dev/null
-+++ b/README.md
-@@ -0,0 +1,39 @@
-+```
-+  _______                     ________        __
-+ |       |.-----.-----.-----.|  |  |  |.----.|  |_
-+ |   -   ||  _  |  -__|     ||  |  |  ||   _||   _|
-+ |_______||   __|_____|__|__||________||__|  |____|
-+          |__| W I R E L E S S   F R E E D O M
-+ -----------------------------------------------------
-+
-+This is the buildsystem for the OpenWrt Linux distribution.
-+
-+To build your own firmware you need a Linux, BSD or MacOSX system (case
-+sensitive filesystem required). Cygwin is unsupported because of the lack
-+of a case sensitive file system.
-+
-+You need gcc, binutils, bzip2, flex, python3.5+, perl, make, find, grep, diff,
-+unzip, gawk, getopt, subversion, libz-dev and libc headers installed.
-+
-+1. Run "./scripts/feeds update -a" to obtain all the latest package definitions
-+defined in feeds.conf / feeds.conf.default
-+
-+2. Run "./scripts/feeds install -a" to install symlinks for all obtained
-+packages into package/feeds/
-+
-+3. Run "make menuconfig" to select your preferred configuration for the
-+toolchain, target system & firmware packages.
-+
-+4. Run "make" to build your firmware. This will download all sources, build
-+the cross-compile toolchain and then cross-compile the Linux kernel & all
-+chosen applications for your target system.
-+
-+Sunshine!
-+	Your OpenWrt Community
-+	http://www.openwrt.org
-+```
-+
-+# How to Build OpenWrt for FriendlyElec devices
-+See [FriendlyElec WiKi](http://wiki.friendlyarm.com/wiki/index.php/How_to_Build_OpenWrt)
-+
-+
 diff --git a/friendlyelec/.gitignore b/friendlyelec/.gitignore
 new file mode 100644
 index 0000000000..1c37a4d2ed
@@ -505,7 +458,7 @@ index 0000000000..af92920d62
 +config_nanopi-h5.seed
 \ No newline at end of file
 diff --git a/package/base-files/files/bin/config_generate b/package/base-files/files/bin/config_generate
-index abb1388ba1..fe550b91bc 100755
+index eb6816e519..8407a99333 100755
 --- a/package/base-files/files/bin/config_generate
 +++ b/package/base-files/files/bin/config_generate
 @@ -100,7 +100,7 @@ generate_network() {
@@ -11575,10 +11528,10 @@ literal 0
 HcmV?d00001
 
 diff --git a/package/kernel/mac80211/files/lib/netifd/wireless/mac80211.sh b/package/kernel/mac80211/files/lib/netifd/wireless/mac80211.sh
-index a131992f26..74fd30d47e 100644
+index 823c68170a..32497b4780 100644
 --- a/package/kernel/mac80211/files/lib/netifd/wireless/mac80211.sh
 +++ b/package/kernel/mac80211/files/lib/netifd/wireless/mac80211.sh
-@@ -508,8 +508,12 @@ mac80211_prepare_vif() {
+@@ -511,8 +511,12 @@ mac80211_prepare_vif() {
  
  	json_get_vars ifname mode ssid wds powersave macaddr enable wpa_psk_file vlan_file
  
@@ -11592,7 +11545,7 @@ index a131992f26..74fd30d47e 100644
  
  	set_default wds 0
  	set_default powersave 0
-@@ -838,7 +842,7 @@ mac80211_vap_cleanup() {
+@@ -841,7 +845,7 @@ mac80211_vap_cleanup() {
  	for wdev in $vaps; do
  		[ "$service" != "none" ] && ubus call ${service} config_remove "{\"iface\":\"$wdev\"}"
  		ip link set dev "$wdev" down 2>/dev/null
