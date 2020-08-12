@@ -13,7 +13,7 @@ FEATURES:=targz gpio rtc usb fpu
 MAINTAINER:=FriendlyARM <support@friendlyarm.com>
 CPU_TYPE:=cortex-a53
 
-KERNEL_PATCHVER:=4.14
+KERNEL_PATCHVER:=5.4
 
 define Target/Description
 	Build firmware images for rockchip rk3328 based FriendlyARM rk3328 boards routers with ARM CPU, *not* MIPS.
