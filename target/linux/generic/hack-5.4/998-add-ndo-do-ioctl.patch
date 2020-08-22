@@ -1,0 +1,31 @@
+From 8d8420bd647b87bf154efd27231ed19654c398ae Mon Sep 17 00:00:00 2001
+From: kongfl888 K <kongfl888@outlook.com>
+Date: Sat, 22 Aug 2020 10:30:42 +0800
+Subject: [PATCH] add ndo do ioctl
+
+Old driver API : call driver ioctl handler
+
+check for 5.4.60
+
+Signed-off-by: kongfl888 K <kongfl888@outlook.com>
+---
+ net/wireless/wext-core.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/net/wireless/wext-core.c b/net/wireless/wext-core.c
+index 69102fd..9b3e986 100644
+--- a/net/wireless/wext-core.c
++++ b/net/wireless/wext-core.c
+@@ -955,6 +955,9 @@ static int wireless_process_ioctl(struct net *net, struct iwreq *iwr,
+ 		else if (private)
+ 			return private(dev, iwr, cmd, info, handler);
+ 	}
++	/* Old driver API : call driver ioctl handler */
++	if (dev->netdev_ops->ndo_do_ioctl)
++		return dev->netdev_ops->ndo_do_ioctl(dev, (struct ifreq *) iwr, cmd);
+ 	return -EOPNOTSUPP;
+ }
+ 
+-- 
+2.14.1.windows.1
+
