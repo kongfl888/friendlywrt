@@ -1,7 +1,7 @@
-From fe16d650c5bc51130e2245f260cd58819a5025bd Mon Sep 17 00:00:00 2001
+From 7406287c0673b69cd4c6f68455c71b80d00cf1b5 Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Wed, 27 May 2020 12:50:20 +0800
-Subject: [PATCH 48/53] lcd2usb_echo: display cpu temperature and ip on lcd1602
+Subject: [PATCH 48/55] lcd2usb_echo: display cpu temperature and ip on lcd1602
 
 ---
  package/base-files/files/usr/bin/lcd2usb_echo | Bin 1579032 -> 1664512 bytes

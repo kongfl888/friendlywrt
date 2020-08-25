@@ -1,7 +1,7 @@
-From ef431667944a5e45f3f5991be545e3fad8988f31 Mon Sep 17 00:00:00 2001
+From 90e3bfa0688881f8172b3f3d2313a07fbe0e6d74 Mon Sep 17 00:00:00 2001
 From: Soff <soffchen@gmail.com>
 Date: Fri, 28 Feb 2020 00:21:43 +0800
-Subject: [PATCH 34/53] Fix DEVTYPE, works fully now
+Subject: [PATCH 34/55] Fix DEVTYPE, works fully now
 
 ---
  package/base-files/files/etc/hotplug.d/usb/31-usb_wifi | 2 +-

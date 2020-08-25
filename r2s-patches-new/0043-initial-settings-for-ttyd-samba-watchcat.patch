@@ -1,7 +1,7 @@
-From 0566e7a629eb6eea5bd8748791bfa7fe21c96edf Mon Sep 17 00:00:00 2001
+From 08b005b9a2b7437ceccba0279a1a31b77b748145 Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Tue, 14 Apr 2020 14:01:46 +0800
-Subject: [PATCH 43/53] initial settings for ttyd, samba, watchcat
+Subject: [PATCH 43/55] initial settings for ttyd, samba, watchcat
 
 ---
  package/base-files/files/root/setup.sh | 72 +++++++++++++++++++++-------------

@@ -1,7 +1,7 @@
-From 0d19c608bb81235a6a2acd4000ef6aa40d21ba75 Mon Sep 17 00:00:00 2001
+From 5eb1e800298f5641cd3a692a12c4e767bee1b55d Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Tue, 14 Apr 2020 13:30:50 +0800
-Subject: [PATCH 42/53] rk3328: add support for rtl8822bu
+Subject: [PATCH 42/55] rk3328: add support for rtl8822bu
 
 ---
  .../base-files/files/etc/hotplug.d/usb/31-usb_wifi | 22 ++++++++++++++++++----

@@ -1,7 +1,7 @@
-From 2b40262dfd74849f5dd2690373c4ecf4da9f3b76 Mon Sep 17 00:00:00 2001
+From 7a8303a8a00afd9b8100a34e30f36e04f469fee5 Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Mon, 24 Feb 2020 01:49:03 +0800
-Subject: [PATCH 26/53] rk3328: add cputemp.sh
+Subject: [PATCH 26/55] rk3328: add cputemp.sh
 
 ---
  target/linux/rockchip-rk3328/base-files/usr/bin/cputemp.sh | 11 +++++++++++

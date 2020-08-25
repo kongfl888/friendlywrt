@@ -1,7 +1,7 @@
-From a360fc9a5df83749a9b19c0717e138a50f2642d7 Mon Sep 17 00:00:00 2001
+From 4217a647c8993c46293adc1f2cdc290d0248a137 Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Tue, 25 Feb 2020 15:15:40 +0800
-Subject: [PATCH 29/53] set net.netfilter.nf_conntrack_max from 16384 to 65536
+Subject: [PATCH 29/55] set net.netfilter.nf_conntrack_max from 16384 to 65536
 
 ---
  package/kernel/linux/files/sysctl-nf-conntrack.conf | 2 +-

@@ -1,7 +1,7 @@
-From 1250617204141cf61b67ca42ba0950d297292ddf Mon Sep 17 00:00:00 2001
+From d42436f8316784967e2e33fff77f14db5c95fdae Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Thu, 20 Feb 2020 14:50:55 +0800
-Subject: [PATCH 18/53] fix enable-swap.sh issue
+Subject: [PATCH 18/55] fix enable-swap.sh issue
 
 ---
  package/base-files/files/etc/enable-swap.sh | 3 +--

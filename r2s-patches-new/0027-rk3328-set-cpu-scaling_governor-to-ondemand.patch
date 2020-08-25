@@ -1,7 +1,7 @@
-From d5708a87d4beaa833980d076e6611e0a7ebfded6 Mon Sep 17 00:00:00 2001
+From 4e8d6a7743439a6f97a26f616f6b5c18df8a2018 Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Tue, 25 Feb 2020 00:44:11 +0800
-Subject: [PATCH 27/53] rk3328: set cpu scaling_governor to ondemand
+Subject: [PATCH 27/55] rk3328: set cpu scaling_governor to ondemand
 
 ---
  target/linux/rockchip-rk3328/base-files/etc/init.d/fa-rk3328-misc | 2 +-

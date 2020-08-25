@@ -1,7 +1,7 @@
-From b20b0fc3c2814318b12b1a254059d14fc129f487 Mon Sep 17 00:00:00 2001
+From 00435379359145ed7f07914c182023a692d9dd33 Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Tue, 25 Feb 2020 02:25:37 +0800
-Subject: [PATCH 28/53] remove core from distfeeds.conf
+Subject: [PATCH 28/55] remove core from distfeeds.conf
 
 ---
  include/feeds.mk | 2 +-

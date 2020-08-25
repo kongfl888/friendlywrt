@@ -1,7 +1,7 @@
-From 37693581e215171c8051c39f8f84114e560494f2 Mon Sep 17 00:00:00 2001
+From 5c34686cef9ccdbf07e70dd058822b6ca46c7801 Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Sat, 22 Feb 2020 20:54:08 +0800
-Subject: [PATCH 21/53] Revert "target/linux/rockchip-rk3328: remove needless
+Subject: [PATCH 21/55] Revert "target/linux/rockchip-rk3328: remove needless
  patch"
 
 This reverts commit 2b0b53858abe55fc0677d7dddef8d70466912365.

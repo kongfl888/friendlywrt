@@ -1,7 +1,7 @@
-From 4407aa5a028132e334c3217a058d96ead349b436 Mon Sep 17 00:00:00 2001
+From ed75a37d2534fbfeb075758fc5a0fa31a3c19995 Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Tue, 14 Apr 2020 13:12:26 +0800
-Subject: [PATCH 41/53] add p7zip
+Subject: [PATCH 41/55] add p7zip
 
 ---
  package/utils/p7zip/Makefile | 34 ++++++++++++++++++++++++++++++++++

@@ -1,7 +1,7 @@
-From d6e3a9d570203a5ee0f3516ea98d23d822c977e6 Mon Sep 17 00:00:00 2001
+From b40e480655ea096a773776ee5c9d5dca709ec29a Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Thu, 12 Dec 2019 08:31:20 +0800
-Subject: [PATCH 04/53] add h5 profile
+Subject: [PATCH 04/55] add h5 profile
 
 ---
  target/linux/allwinner-h5/Makefile                 |  26 +

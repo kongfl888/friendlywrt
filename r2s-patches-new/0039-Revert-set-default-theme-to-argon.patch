@@ -1,7 +1,7 @@
-From f92f711f93de05272823ac83ad6f66cf476230f9 Mon Sep 17 00:00:00 2001
+From 3168523d45985e851c345a0b459e9e0bd07109db Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Sat, 11 Apr 2020 09:53:43 +0800
-Subject: [PATCH 39/53] Revert "set default theme to argon"
+Subject: [PATCH 39/55] Revert "set default theme to argon"
 
 This reverts commit 337ed979d3663a1e60a2848e6f15bb0d85a92f7c.
 ---

@@ -1,7 +1,7 @@
-From da0b4bf5610b47f3c05cd6af88e10d11d5ac859f Mon Sep 17 00:00:00 2001
+From 06a552c92cf68197b9bb195a7f572d99e480500d Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Tue, 4 Feb 2020 11:34:51 +0800
-Subject: [PATCH 14/53] add rk3328 profile
+Subject: [PATCH 14/55] add rk3328 profile
 
 ---
  target/linux/rockchip-rk3328/Makefile              |  26 +

@@ -1,7 +1,7 @@
-From c60e699b56ad2141a25f296fb381c2942ca1e8c9 Mon Sep 17 00:00:00 2001
+From 390667da449768ea055eac17ae5c78ac5c0a98fe Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Wed, 19 Feb 2020 01:43:16 -0500
-Subject: [PATCH 03/53] enable ipv6 for docker-ce
+Subject: [PATCH 03/55] enable ipv6 for docker-ce
 
 ---
  package/base-files/files/etc/sysctl.conf | 4 ++++

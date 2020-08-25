@@ -1,7 +1,7 @@
-From cc8dc68ed9fda65d95fce55d4ca9d041a9c31e6f Mon Sep 17 00:00:00 2001
+From 01b6d565a76f0a5a316813d5f268d295bcfc272e Mon Sep 17 00:00:00 2001
 From: Soff <soffchen@gmail.com>
 Date: Fri, 28 Feb 2020 00:35:08 +0800
-Subject: [PATCH 35/53] Keep compatibility with r1s
+Subject: [PATCH 35/55] Keep compatibility with r1s
 
 ---
  package/base-files/files/etc/hotplug.d/usb/31-usb_wifi | 2 +-

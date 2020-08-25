@@ -1,7 +1,7 @@
-From 989636b5546df9577f7496c482f2d8ddca34a104 Mon Sep 17 00:00:00 2001
+From 7154e5512faf8606fdc11bd8b7af58a5a9678c11 Mon Sep 17 00:00:00 2001
 From: kongfl888 K <kongfl888@outlook.com>
-Date: Tue, 25 Aug 2020 12:42:55 +0800
-Subject: [PATCH] tools: add upx.
+Date: Wed, 26 Aug 2020 02:39:52 +0800
+Subject: [PATCH 55/55] tools: add upx.
 
 Signed-off-by: kongfl888 K <kongfl888@outlook.com>
 ---
@@ -13,17 +13,17 @@ Signed-off-by: kongfl888 K <kongfl888@outlook.com>
  create mode 100644 tools/upx/Makefile
 
 diff --git a/tools/Makefile b/tools/Makefile
-index 9bae09ece6..e951ad4a15 100644
+index f038c90ba9..04f47470ac 100644
 --- a/tools/Makefile
 +++ b/tools/Makefile
-@@ -27,6 +27,7 @@ tools-y += sstrip make-ext4fs e2fsprogs mtd-utils mkimage
- tools-y += firmware-utils patch-image quilt padjffs2
- tools-y += mm-macros missing-macros cmake bc findutils gengetopt patchelf
- tools-y += mtools dosfstools libressl
+@@ -34,6 +34,7 @@ tools-$(CONFIG_TARGET_ar71xx) += lzma-old
+ tools-$(CONFIG_TARGET_ar71xx)$(CONFIG_TARGET_ath79) += squashfs
+ tools-$(CONFIG_USES_MINOR) += kernel2minor
+ tools-y += lzma squashfskit4 zip zstd
 +tools-y += ucl upx
- tools-$(CONFIG_TARGET_orion_generic) += wrt350nv2-builder upslug2
- tools-$(CONFIG_TARGET_x86) += qemu
- tools-$(CONFIG_TARGET_mxs) += elftosb sdimage
+ tools-$(BUILD_B43_TOOLS) += b43-tools
+ tools-$(BUILD_ISL) += isl
+ tools-$(CONFIG_USE_SPARSE) += sparse
 @@ -41,6 +42,7 @@ tools-$(CONFIG_TARGET_apm821xx)$(CONFIG_TARGET_gemini) += genext2fs
  tools-$(CONFIG_TARGET_tegra) += cbootimage cbootimage-configs
  

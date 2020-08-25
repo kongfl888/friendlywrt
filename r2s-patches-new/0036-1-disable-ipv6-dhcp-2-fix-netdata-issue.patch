@@ -1,7 +1,7 @@
-From 94beed397569c76f403b6ed6b7195113c7630670 Mon Sep 17 00:00:00 2001
+From 18ae89a8150267458bef59dae4b09810821e4d28 Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Fri, 28 Feb 2020 12:22:18 +0800
-Subject: [PATCH 36/53] 1) disable ipv6 dhcp 2) fix netdata issue
+Subject: [PATCH 36/55] 1) disable ipv6 dhcp 2) fix netdata issue
 
 ---
  package/base-files/files/root/setup.sh | 9 +++++++++

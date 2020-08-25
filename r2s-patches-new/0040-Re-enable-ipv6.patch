@@ -1,7 +1,7 @@
-From ae7e25f37ab829673d2cf24e74df27e74d8061e3 Mon Sep 17 00:00:00 2001
+From b6f528b99eab33c237bf4f900e2d81db5bb02672 Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Sat, 11 Apr 2020 09:57:42 +0800
-Subject: [PATCH 40/53] Re-enable ipv6
+Subject: [PATCH 40/55] Re-enable ipv6
 
 ---
  package/base-files/files/root/setup.sh | 6 ------

@@ -1,7 +1,7 @@
-From b508461d4cc6d9c015c55291d46482f224dcbd6c Mon Sep 17 00:00:00 2001
+From 9b94249539fd167046798f9632980f507ff6aadf Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Fri, 3 Jan 2020 10:15:26 +0800
-Subject: [PATCH 10/53] updated s5p4418 profile
+Subject: [PATCH 10/55] updated s5p4418 profile
 
 ---
  target/linux/nexell-s5p4418/Makefile               |  10 +-

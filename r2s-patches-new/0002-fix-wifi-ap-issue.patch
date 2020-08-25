@@ -1,7 +1,7 @@
-From e120bafb1f3f251438302d947358622e603a8dae Mon Sep 17 00:00:00 2001
+From 4d7caa97a84902772a8f67236da94ba910264dac Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Wed, 4 Dec 2019 15:03:56 +0800
-Subject: [PATCH 02/53] fix wifi ap issue
+Subject: [PATCH 02/55] fix wifi ap issue
 
 ---
  package/base-files/files/etc/rc.local           |  2 ++

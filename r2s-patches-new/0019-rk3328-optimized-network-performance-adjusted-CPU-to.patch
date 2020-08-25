@@ -1,7 +1,7 @@
-From e19f0843aa01443302f5964f21766165aaea3104 Mon Sep 17 00:00:00 2001
+From b95e1662facf7b4bf4b80730b9c5bdbda85df6b0 Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Sat, 22 Feb 2020 14:10:37 +0800
-Subject: [PATCH 19/53] rk3328: optimized network performance, adjusted CPU to
+Subject: [PATCH 19/55] rk3328: optimized network performance, adjusted CPU to
  performance priority
 
 ---

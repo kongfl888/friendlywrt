@@ -32,7 +32,7 @@ jobs:
     - name: Load upstream commits
       run:  |
         git checkout snapshot
-        git reset --hard origin/master-20200803
+        git reset --hard origin/master-20200826
         git remote add upstream https://github.com/openwrt/openwrt.git
         git fetch upstream master
         git rebase upstream/master

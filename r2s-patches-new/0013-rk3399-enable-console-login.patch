@@ -1,7 +1,7 @@
-From 194e9bd4c3dd96ec41bda202b0d49ecf88549010 Mon Sep 17 00:00:00 2001
+From 61d300f9ead443870200890af6498bf75ac8ab49 Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Sun, 19 Jan 2020 15:37:03 +0800
-Subject: [PATCH 13/53] rk3399: enable console login
+Subject: [PATCH 13/55] rk3399: enable console login
 
 ---
  target/linux/rockchip-rk3399/base-files/etc/inittab | 2 +-

@@ -1,7 +1,7 @@
-From fb304bbf083f8966c133bb85c45749f5f15648ae Mon Sep 17 00:00:00 2001
+From 7c7513c5a2a736f448e1cd2e81049d270d830cbf Mon Sep 17 00:00:00 2001
 From: kongfl888 <kongfl888@outlook.com>
 Date: Tue, 7 Jul 2020 05:27:31 +0800
-Subject: [PATCH 50/53] Remove thunderx patch.
+Subject: [PATCH 50/55] Remove thunderx patch.
 
 ---
  ...x-add-support-for-rgmii-internal-delay-mo.patch | 139 ---------------------

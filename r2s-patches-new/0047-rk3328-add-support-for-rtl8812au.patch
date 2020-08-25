@@ -1,7 +1,7 @@
-From 3be3eba05abef437c6204bc658bda0486961638b Mon Sep 17 00:00:00 2001
+From cb3c30232a0af357098c518bf1fded9dd09a427d Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Thu, 14 May 2020 15:49:05 +0800
-Subject: [PATCH 47/53] rk3328: add support for rtl8812au
+Subject: [PATCH 47/55] rk3328: add support for rtl8812au
 
 ---
  package/base-files/files/etc/hotplug.d/usb/31-usb_wifi             | 7 ++++---

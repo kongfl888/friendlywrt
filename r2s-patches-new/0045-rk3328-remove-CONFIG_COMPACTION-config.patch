@@ -1,7 +1,7 @@
-From b3c9fcdee8e2063fdc0f9a333605736754c88582 Mon Sep 17 00:00:00 2001
+From a5b012a18ffb457492e0e4898d87245b6a825c88 Mon Sep 17 00:00:00 2001
 From: Chuck <fanck0605@qq.com>
 Date: Fri, 8 May 2020 17:05:50 +0800
-Subject: [PATCH 45/53] rk3328: remove CONFIG_COMPACTION config
+Subject: [PATCH 45/55] rk3328: remove CONFIG_COMPACTION config
 
 CONFIG_COMPACTION is already moved to generic config-4.14
 ---

@@ -1,7 +1,7 @@
-From 9e9d1c0e514a266fc789ce894ad065622f15dea8 Mon Sep 17 00:00:00 2001
+From aff5ae75929a032d8fbbeab31e7fb35a108e2f5c Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Sun, 19 Jan 2020 15:13:43 +0800
-Subject: [PATCH 12/53] rk3399: create virtual-interface wlan1 for
+Subject: [PATCH 12/55] rk3399: create virtual-interface wlan1 for
  t4/m4/som-rk3399
 
 ---

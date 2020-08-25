@@ -1,7 +1,7 @@
-From f21f73ec95c324edc211fcf2f955965ae79b77bf Mon Sep 17 00:00:00 2001
+From 702796280d068ba31482e6191428881d7bde5c37 Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Thu, 27 Feb 2020 20:40:42 +0800
-Subject: [PATCH 32/53] rk3328: added usb 5g wifi driver: RTL8821CU
+Subject: [PATCH 32/55] rk3328: added usb 5g wifi driver: RTL8821CU
 
 you need to update the following directory for this commit to work:
     repo sync scripts/sd-fuse

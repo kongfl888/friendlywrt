@@ -1,7 +1,7 @@
-From 97e3d9d0e153a4ae573d6192c81ca009514fa7ff Mon Sep 17 00:00:00 2001
+From bd6804cbc97e1c3f895c1a42c0c29b0a57787c99 Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Thu, 28 Nov 2019 14:16:20 +0800
-Subject: [PATCH 01/53] Apply the changes from 18.06.1 commit-id:
+Subject: [PATCH 01/55] Apply the changes from 18.06.1 commit-id:
  e31bc21b9514067cd0a305539ac0ef7e1bd94a13
 
 ---

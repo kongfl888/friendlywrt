@@ -1,7 +1,7 @@
-From 09336e83db0edd433a0acf0983bac8da41fe4f81 Mon Sep 17 00:00:00 2001
+From e879e1232a3cbccba6c99b6b1e7b6c5b0da02a2f Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Tue, 18 Feb 2020 17:52:55 +0800
-Subject: [PATCH 15/53] rk3328: added support for pwm fan
+Subject: [PATCH 15/55] rk3328: added support for pwm fan
 
 ---
  .../base-files/etc/init.d/fa-rk3328-pwmfan         |  9 ++++++++

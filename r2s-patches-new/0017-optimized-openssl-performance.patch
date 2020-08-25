@@ -1,7 +1,7 @@
-From e0f1ffaf738ecd70c9e7cf3b7501fcedbbd3a0e5 Mon Sep 17 00:00:00 2001
+From 6574916c31e0ad47ca34652fc78a86e603ec3169 Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Thu, 20 Feb 2020 02:39:20 +0800
-Subject: [PATCH 17/53] optimized openssl performance
+Subject: [PATCH 17/55] optimized openssl performance
 
 ---
  package/libs/openssl/Makefile | 3 +--

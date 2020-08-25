@@ -1,7 +1,7 @@
-From 80a7c2c7fee217a1d2e65263f1c32e1fd5226162 Mon Sep 17 00:00:00 2001
+From 206827d8faecbb4a7c00aac26dc95fc3a2b8af7e Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Thu, 12 Dec 2019 13:09:27 +0800
-Subject: [PATCH 06/53] fix wifi ap issue via service
+Subject: [PATCH 06/55] fix wifi ap issue via service
 
 ---
  package/base-files/files/etc/init.d/fa-wifiap   | 13 ++++++++

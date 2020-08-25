@@ -1,7 +1,7 @@
-From b50618374822af709fcc97a858f2fc712e0b6adb Mon Sep 17 00:00:00 2001
+From 11b1b39b23666aee3002c9cf7e5980e637a8eda4 Mon Sep 17 00:00:00 2001
 From: Chuck <fanck0605@qq.com>
 Date: Wed, 15 Apr 2020 12:33:31 +0800
-Subject: [PATCH 44/53] setup.sh: make sure it's not commented
+Subject: [PATCH 44/55] setup.sh: make sure it's not commented
 
 If I had already commented `invalid users`, there would have been two `#` in front of it.
 ---

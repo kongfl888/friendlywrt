@@ -1,7 +1,7 @@
-From 9f26933fa23ba4bb066f98ca13a35d383f335aff Mon Sep 17 00:00:00 2001
+From e5760c162439a749ac12b9aafb5b5991b78d4f16 Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Thu, 12 Dec 2019 13:07:31 +0800
-Subject: [PATCH 05/53] Revert "fix wifi ap issue"
+Subject: [PATCH 05/55] Revert "fix wifi ap issue"
 
 This reverts commit 888212059cc03ce07ecd4a710acda37091692f35.
 ---

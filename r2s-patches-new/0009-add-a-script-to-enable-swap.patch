@@ -1,7 +1,7 @@
-From 3b38b032b0a488972acb2d3ad8cad1e20b6fd18f Mon Sep 17 00:00:00 2001
+From ec15cd70d9f5fc82e6c10673e34e49f4bd151c71 Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Sat, 14 Dec 2019 15:52:26 +0800
-Subject: [PATCH 09/53] add a script to enable swap
+Subject: [PATCH 09/55] add a script to enable swap
 
 ---
  package/base-files/files/etc/enable-swap.sh | 51 +++++++++++++++++++++++++++++

@@ -1,7 +1,7 @@
-From acc0095babd52cc3e6e36f1d8fbe6fab1195655b Mon Sep 17 00:00:00 2001
+From 36bc4cd9be973a56d43bf72c71662abb085ea161 Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Wed, 19 Feb 2020 20:14:22 +0800
-Subject: [PATCH 16/53] target/linux/rockchip-rk3328: remove needless patch
+Subject: [PATCH 16/55] target/linux/rockchip-rk3328: remove needless patch
 
 ---
  ...x-add-support-for-rgmii-internal-delay-mo.patch | 139 ---------------------

@@ -1,7 +1,7 @@
-From 1dd16987229014e020bbe85c2a5c3f6a799facef Mon Sep 17 00:00:00 2001
+From 572a044e6b2ed1059409befb3713572e25a0170f Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Thu, 28 May 2020 17:39:15 +0800
-Subject: [PATCH 49/53] add support for new model: nanopi-neo3
+Subject: [PATCH 49/55] add support for new model: nanopi-neo3
 
 ---
  target/linux/rockchip-rk3328/base-files/etc/board.d/02_network |  3 +++

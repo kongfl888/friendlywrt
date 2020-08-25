@@ -1,7 +1,7 @@
-From a4871d7fa55999f221939bcd67d07dbdc6c4df98 Mon Sep 17 00:00:00 2001
+From b7dc14049a13e58ca72acd2eb0ba63e9f05b29fe Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Thu, 12 Dec 2019 16:01:45 +0800
-Subject: [PATCH 07/53] rk3399: disabled onboard's ethernet tcp/udp offloading
+Subject: [PATCH 07/55] rk3399: disabled onboard's ethernet tcp/udp offloading
 
 ---
  .../iface/12-disable-rk3399-eth-offloading         | 22 ++++++++++++++++++++++

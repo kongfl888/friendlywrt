@@ -1,7 +1,7 @@
-From 1b6ef941c06b17a557d76c23dcd41c1d794f8fc9 Mon Sep 17 00:00:00 2001
+From ba7f09585d99285031e303148f8322f7317b16bc Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Wed, 26 Feb 2020 21:10:07 +0800
-Subject: [PATCH 31/53] added support for r2s' leds, update to kernel 5.4.22
+Subject: [PATCH 31/55] added support for r2s' leds, update to kernel 5.4.22
 
 you need to update the following directory for this commit to work,
 use the following commands:

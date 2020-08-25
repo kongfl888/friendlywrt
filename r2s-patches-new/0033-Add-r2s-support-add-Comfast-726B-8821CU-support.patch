@@ -1,7 +1,7 @@
-From 3c87b85086414e3df1de0a10972202ba9f2147cb Mon Sep 17 00:00:00 2001
+From ef8044e292472a2e24435afd034c072de8b97f6d Mon Sep 17 00:00:00 2001
 From: Soff <soffchen@gmail.com>
 Date: Thu, 27 Feb 2020 22:58:39 +0800
-Subject: [PATCH 33/53] Add r2s support, add Comfast 726B(8821CU) support
+Subject: [PATCH 33/55] Add r2s support, add Comfast 726B(8821CU) support
 
 ---
  package/base-files/files/etc/hotplug.d/usb/31-usb_wifi | 8 +-------

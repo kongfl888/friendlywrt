@@ -1,7 +1,7 @@
-From fd2925a8ea93ce9a7a9401ec26aa2bcd7f805ffa Mon Sep 17 00:00:00 2001
+From dbfef0b4236e33b004547e392f6dd50dac299f9b Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Fri, 13 Dec 2019 17:53:13 +0800
-Subject: [PATCH 08/53] rk3399: added support for pwm fan
+Subject: [PATCH 08/55] rk3399: added support for pwm fan
 
 ---
  .../base-files/etc/init.d/fa-rk3399-pwmfan         |  9 ++++

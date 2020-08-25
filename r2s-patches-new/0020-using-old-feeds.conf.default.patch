@@ -1,7 +1,7 @@
-From affbdfd373b1dd1c161a8e76dd5a5b223f33347b Mon Sep 17 00:00:00 2001
+From 7794cf80b9f8cce629bb877766a4b23533d6235c Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Sat, 22 Feb 2020 16:02:32 +0800
-Subject: [PATCH 20/53] using old feeds.conf.default
+Subject: [PATCH 20/55] using old feeds.conf.default
 
 ---
  feeds.conf.default | 9 ++++-----

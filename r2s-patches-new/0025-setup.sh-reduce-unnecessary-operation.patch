@@ -1,7 +1,7 @@
-From 03708bc6772f8d9ead8c187d379eed88f850ed56 Mon Sep 17 00:00:00 2001
+From 2d14fc56d8b9bd40e281165beb084340ede97ac1 Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Sun, 23 Feb 2020 16:46:12 +0800
-Subject: [PATCH 25/53] setup.sh: reduce unnecessary operation
+Subject: [PATCH 25/55] setup.sh: reduce unnecessary operation
 
 ---
  package/base-files/files/root/setup.sh | 22 ++++++++++++++--------

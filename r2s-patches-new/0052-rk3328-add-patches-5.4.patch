@@ -1,7 +1,7 @@
-From eb04bf9089ee98e2782950efa9f9abe93edada16 Mon Sep 17 00:00:00 2001
+From 9c8d15cf3f17eefaa2be84c7ec72617ce7d1568f Mon Sep 17 00:00:00 2001
 From: kongfl888 K <kongfl888@outlook.com>
-Date: Mon, 20 Jul 2020 01:51:54 +0800
-Subject: [PATCH 53/53] rk3328: add patches-5.4
+Date: Wed, 22 Jul 2020 02:23:59 +0800
+Subject: [PATCH 52/55] rk3328:add patches-5.4
 
 Signed-off-by: kongfl888 K <kongfl888@outlook.com>
 ---

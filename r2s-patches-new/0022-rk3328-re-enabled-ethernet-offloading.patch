@@ -1,7 +1,7 @@
-From 7a6d81bbab3b90a546aef86e6cce17c5dd46d21e Mon Sep 17 00:00:00 2001
+From bf88a611884ba3ae32578419ecfd43f2f1eb1751 Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Sun, 23 Feb 2020 00:07:31 +0800
-Subject: [PATCH 22/53] rk3328: re-enabled ethernet offloading
+Subject: [PATCH 22/55] rk3328: re-enabled ethernet offloading
 
 ---
  .../iface/12-disable-rk3328-eth-offloading         | 22 ----------------------

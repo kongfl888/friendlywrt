@@ -1,7 +1,7 @@
-From d72ee5259971518a4f2f5f2cd789141b79012cdf Mon Sep 17 00:00:00 2001
+From 13553496048d33064361bd1a6f62e1335d6fc2ac Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Fri, 3 Jan 2020 18:49:08 +0800
-Subject: [PATCH 11/53] add inittab for 4418/6818/3399
+Subject: [PATCH 11/55] add inittab for 4418/6818/3399
 
 ---
  target/linux/nexell-s5p4418/base-files/etc/inittab  | 5 +++++

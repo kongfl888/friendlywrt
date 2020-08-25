@@ -1,7 +1,7 @@
-From a7e325fbaf78180e4293f35b1c08ece1269facfa Mon Sep 17 00:00:00 2001
+From d6ed4970f7da6fbf0b6aa94520ee8c5b0e33cd15 Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Fri, 10 Apr 2020 13:40:13 +0800
-Subject: [PATCH 37/53] update luci
+Subject: [PATCH 37/55] update luci
 
 ---
  feeds.conf.default | 2 +-

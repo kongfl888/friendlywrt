@@ -1,7 +1,7 @@
-From c10967d090e2ff799967131a8ceb273bb2a58d87 Mon Sep 17 00:00:00 2001
+From d5dfd11a3e5d855510c70ddf48a5b756f8d35a5d Mon Sep 17 00:00:00 2001
 From: Lawrence-Tang <tangzongsheng@gmail.com>
 Date: Wed, 26 Feb 2020 13:46:49 +0800
-Subject: [PATCH 30/53] Revert "rk3328: re-enabled ethernet offloading"
+Subject: [PATCH 30/55] Revert "rk3328: re-enabled ethernet offloading"
 
 This reverts commit a18e60350ef732682b6ffcce9769d3c23e8794e3.
 ---
