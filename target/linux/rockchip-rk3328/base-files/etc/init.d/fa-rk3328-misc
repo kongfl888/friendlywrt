@@ -1,9 +1,0 @@
-#!/bin/sh /etc/rc.common
-
-START=96
- 
-start() {
-    [ -f /proc/irq/28/smp_affinity ] && echo 8 > /proc/irq/28/smp_affinity
-    echo ondemand > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
-}
-
