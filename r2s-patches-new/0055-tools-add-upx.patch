@@ -1,4 +1,4 @@
-From 7154e5512faf8606fdc11bd8b7af58a5a9678c11 Mon Sep 17 00:00:00 2001
+From 90558339221b4498610bca32b0cc44ebb2d12005 Mon Sep 17 00:00:00 2001
 From: kongfl888 K <kongfl888@outlook.com>
 Date: Wed, 26 Aug 2020 02:39:52 +0800
 Subject: [PATCH 55/55] tools: add upx.
@@ -13,25 +13,25 @@ Signed-off-by: kongfl888 K <kongfl888@outlook.com>
  create mode 100644 tools/upx/Makefile
 
 diff --git a/tools/Makefile b/tools/Makefile
-index f038c90ba9..04f47470ac 100644
+index 65bec34c1b..118268777b 100644
 --- a/tools/Makefile
 +++ b/tools/Makefile
-@@ -34,6 +34,7 @@ tools-$(CONFIG_TARGET_ar71xx) += lzma-old
- tools-$(CONFIG_TARGET_ar71xx)$(CONFIG_TARGET_ath79) += squashfs
- tools-$(CONFIG_USES_MINOR) += kernel2minor
- tools-y += lzma squashfskit4 zip zstd
+@@ -26,6 +26,7 @@ tools-y += e2fsprogs fakeroot findutils firmware-utils flex gengetopt
+ tools-y += libressl libtool lzma m4 make-ext4fs missing-macros mkimage
+ tools-y += mklibs mm-macros mtd-utils mtools padjffs2 patch-image
+ tools-y += patchelf pkgconf quilt squashfskit4 sstrip zip zlib zstd
 +tools-y += ucl upx
  tools-$(BUILD_B43_TOOLS) += b43-tools
  tools-$(BUILD_ISL) += isl
- tools-$(CONFIG_USE_SPARSE) += sparse
-@@ -41,6 +42,7 @@ tools-$(CONFIG_TARGET_apm821xx)$(CONFIG_TARGET_gemini) += genext2fs
- tools-$(CONFIG_TARGET_tegra) += cbootimage cbootimage-configs
- 
- # builddir dependencies
+ tools-$(BUILD_TOOLCHAIN) += expat gmp libelf mpc mpfr
+@@ -73,6 +74,7 @@ $(curdir)/sdcc/compile := $(curdir)/bison/compile
+ $(curdir)/squashfs/compile := $(curdir)/lzma-old/compile
+ $(curdir)/squashfskit4/compile := $(curdir)/xz/compile $(curdir)/zlib/compile
+ $(curdir)/zlib/compile := $(curdir)/cmake/compile
 +$(curdir)/upx/compile := $(curdir)/ucl/compile
- $(curdir)/bison/compile := $(curdir)/flex/compile
- $(curdir)/flex/compile := $(curdir)/libtool/compile
- $(curdir)/libtool/compile := $(curdir)/m4/compile $(curdir)/autoconf/compile $(curdir)/automake/compile $(curdir)/missing-macros/compile
+ 
+ ifneq ($(HOST_OS),Linux)
+   $(curdir)/squashfskit4/compile += $(curdir)/coreutils/compile
 diff --git a/tools/ucl/Makefile b/tools/ucl/Makefile
 new file mode 100644
 index 0000000000..9fb9aec117
