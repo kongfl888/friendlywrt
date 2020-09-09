@@ -1,0 +1,42 @@
+From 5eae16752da54862dcc5f23908167c0ec388b59a Mon Sep 17 00:00:00 2001
+From: kongfl888 K <kongfl888@outlook.com>
+Date: Wed, 9 Sep 2020 20:31:50 +0800
+Subject: [PATCH] rockchip:nanopi-r2s improve booting on SD Card.
+
+It will improve the problem that in some SD cards are failing to boot up.
+
+And it may useful for Class 4 SD Cards.
+
+Issues:
+When booting on some SD cards an error message appears as:
+"spl: mmc init failed with error: -95"
+"mmc0: error -110 whilst initialising SD card"
+
+Solutions:
+Add regulator-boot-on parameters to vcc_sd.
+Add startup-delay-us parameters to vcc_sdio.
+
+Signed-off-by: kongfl888 K <kongfl888@outlook.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dts | 2 ++
+ 1 file changed, 2 insertions(+)
+
+--- a/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dts
+@@ -37,6 +37,7 @@
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&sdmmc0m1_gpio>;
+ 		regulator-name = "vcc_sd";
++		regulator-boot-on;
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+ 		vin-supply = <&vcc_io>;
+@@ -56,6 +57,7 @@
+ 		regulator-name = "vcc_sdio";
+ 		regulator-settling-time-us = <5000>;
+ 		regulator-type = "voltage";
++		startup-delay-us = <2000>;
+ 		vin-supply = <&vcc_io>;
+ 	};
+ 
+
