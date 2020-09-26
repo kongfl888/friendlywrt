@@ -38,7 +38,7 @@ $(eval $(call KernelPackage,ata-core))
 
 define AddDepends/ata
   SUBMENU:=$(BLOCK_MENU)
-  DEPENDS+=kmod-ata-core $(1)
+  DEPENDS+=+kmod-ata-core $(1)
 endef
 
 
@@ -117,14 +117,13 @@ $(eval $(call KernelPackage,ata-nvidia-sata))
 
 
 define KernelPackage/ata-pdc202xx-old
-  SUBMENU:=$(BLOCK_MENU)
   TITLE:=Older Promise PATA controller support
-  DEPENDS:=kmod-ata-core
   KCONFIG:= \
        CONFIG_ATA_SFF=y \
        CONFIG_PATA_PDC_OLD
   FILES:=$(LINUX_DIR)/drivers/ata/pata_pdc202xx_old.ko
   AUTOLOAD:=$(call AutoLoad,41,pata_pdc202xx_old,1)
+  $(call AddDepends/ata)
 endef
 
 define KernelPackage/ata-pdc202xx-old/description
@@ -238,7 +237,12 @@ define KernelPackage/dm
 	CONFIG_BLK_DEV_DM \
 	CONFIG_DM_CRYPT \
 	CONFIG_DM_MIRROR
-  FILES:=$(LINUX_DIR)/drivers/md/dm-*.ko
+  FILES:= \
+    $(LINUX_DIR)/drivers/md/dm-mod.ko \
+    $(LINUX_DIR)/drivers/md/dm-crypt.ko \
+    $(LINUX_DIR)/drivers/md/dm-log.ko \
+    $(LINUX_DIR)/drivers/md/dm-mirror.ko \
+    $(LINUX_DIR)/drivers/md/dm-region-hash.ko
   AUTOLOAD:=$(call AutoLoad,30,dm-mod dm-log dm-region-hash dm-mirror dm-crypt)
 endef
 
@@ -247,6 +251,49 @@ define KernelPackage/dm/description
 endef
 
 $(eval $(call KernelPackage,dm))
+
+define KernelPackage/dm-raid
+  SUBMENU:=$(BLOCK_MENU)
+  TITLE:=LVM2 raid support
+  DEPENDS:=+kmod-dm +kmod-md-mod \
+           +kmod-md-raid0 +kmod-md-raid1 +kmod-md-raid10 +kmod-md-raid456
+  KCONFIG:= \
+	CONFIG_DM_RAID
+  FILES:=$(LINUX_DIR)/drivers/md/dm-raid.ko
+  AUTOLOAD:=$(call AutoLoad,31,dm-raid)
+endef
+
+define KernelPackage/dm-raid/description
+ Kernel module necessary for LVM2 raid support
+endef
+
+$(eval $(call KernelPackage,dm-raid))
+
+
+define KernelPackage/iscsi-initiator
+  SUBMENU:=$(BLOCK_MENU)
+  TITLE:=iSCSI Initiator over TCP/IP
+  DEPENDS:=+kmod-scsi-core +kmod-crypto-hash
+  KCONFIG:= \
+	CONFIG_INET \
+	CONFIG_SCSI_LOWLEVEL=y \
+	CONFIG_ISCSI_TCP \
+	CONFIG_SCSI_ISCSI_ATTRS=y
+  FILES:= \
+	$(LINUX_DIR)/drivers/scsi/iscsi_tcp.ko \
+	$(LINUX_DIR)/drivers/scsi/libiscsi.ko \
+	$(LINUX_DIR)/drivers/scsi/libiscsi_tcp.ko \
+	$(LINUX_DIR)/drivers/scsi/scsi_transport_iscsi.ko
+  AUTOLOAD:=$(call AutoProbe,libiscsi libiscsi_tcp scsi_transport_iscsi iscsi_tcp)
+endef
+
+define KernelPackage/iscsi-initiator/description
+The iSCSI Driver provides a host with the ability to access storage through an
+IP network. The driver uses the iSCSI protocol to transport SCSI requests and
+responses over a TCP/IP network between the host (the "initiator") and "targets".
+endef
+
+$(eval $(call KernelPackage,iscsi-initiator))
 
 
 define KernelPackage/md-mod
@@ -518,3 +565,17 @@ define KernelPackage/scsi-tape
 endef
 
 $(eval $(call KernelPackage,scsi-tape))
+
+define KernelPackage/iosched-bfq
+  SUBMENU:=$(BLOCK_MENU)
+  TITLE:=Kernel support for BFQ I/O scheduler
+  KCONFIG:= \
+    CONFIG_IOSCHED_BFQ \
+    CONFIG_BFQ_GROUP_IOSCHED=y \
+    CONFIG_BFQ_CGROUP_DEBUG=n
+  FILES:= \
+    $(LINUX_DIR)/block/bfq.ko
+  AUTOLOAD:=$(call AutoLoad,10,bfq)
+endef
+
+$(eval $(call KernelPackage,iosched-bfq))
