@@ -1,0 +1,50 @@
+From 2566c513276ce688bf8c8f19f96f403e31673176 Mon Sep 17 00:00:00 2001
+From: Lawrence-Tang <tangzongsheng@gmail.com>
+Date: Thu, 14 May 2020 15:49:05 +0800
+Subject: [PATCH 31/39] rk3328: add support for rtl8812au
+
+---
+ package/base-files/files/etc/hotplug.d/usb/31-usb_wifi     | 7 ++++---
+ .../rockchip-rk3328/base-files/etc/modules.d/10-rtl8812au  | 1 +
+ 2 files changed, 5 insertions(+), 3 deletions(-)
+ create mode 100755 target/linux/rockchip-rk3328/base-files/etc/modules.d/10-rtl8812au
+
+diff --git a/package/base-files/files/etc/hotplug.d/usb/31-usb_wifi b/package/base-files/files/etc/hotplug.d/usb/31-usb_wifi
+index 0cea5b820b..ed26ebb367 100644
+--- a/package/base-files/files/etc/hotplug.d/usb/31-usb_wifi
++++ b/package/base-files/files/etc/hotplug.d/usb/31-usb_wifi
+@@ -4,12 +4,14 @@ logger ACTION=$ACTION DEVPATH=$DEVPATH SUBSYSTEM=$SUBSYSTEM DEVTYPE=$DEVTYPE PRO
+ 
+ FE_DIR=/root/.friendlyelec/
+ if { [ "${DEVTYPE}" = usb_device ] || [ "${DEVTYPE}" = usb_interface ] ;} \
+-    && { [ "${PRODUCT}" = "bda/b812/210" ] || [ "${PRODUCT}" = "bda/c811/200" ] || [ "${PRODUCT}" = "bda/c820/200" ] ;}; then
+-    MODULE=Realtek
++    && { [ "${PRODUCT}" = "bda/8812/0" ] || [ "${PRODUCT}" = "bda/b812/210" ] || [ "${PRODUCT}" = "bda/c811/200" ] || [ "${PRODUCT}" = "bda/c820/200" ] ;}; then
++        MODULE=Realtek
+     if [ "${PRODUCT}" = "bda/b812/210" ]; then
+         MODULE=rtl8822bu
+     elif [ "${PRODUCT}" = "bda/c811/200" ]; then
+         MODULE=rtl8821cu
++    elif [ "${PRODUCT}" = "bda/8812/0" ]; then
++        MODULE=rtl8812au
+     elif [ "${PRODUCT}" = "bda/c820/200" ]; then
+ 	    MODULE=realtek-c820
+     fi
+@@ -39,7 +41,6 @@ if { [ "${DEVTYPE}" = usb_device ] || [ "${DEVTYPE}" = usb_interface ] ;} \
+ 
+             # Enable wifi and change ssid
+             if [ -n "`uci get wireless.${RADIO}`" ]; then
+-
+                 # FIXME: Since these USB wifi is too slow in 5g mode, use 2.4G instead
+                 uci batch <<EOF
+ set wireless.${RADIO}.hwmode='11g'
+diff --git a/target/linux/rockchip-rk3328/base-files/etc/modules.d/10-rtl8812au b/target/linux/rockchip-rk3328/base-files/etc/modules.d/10-rtl8812au
+new file mode 100755
+index 0000000000..df32c139bf
+--- /dev/null
++++ b/target/linux/rockchip-rk3328/base-files/etc/modules.d/10-rtl8812au
+@@ -0,0 +1 @@
++rtl8812au
+-- 
+2.28.0.windows.1
+

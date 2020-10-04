@@ -1,0 +1,33 @@
+From e111ded3a9426d65f91b141552d4defddaec1fe0 Mon Sep 17 00:00:00 2001
+From: Lawrence-Tang <tangzongsheng@gmail.com>
+Date: Thu, 20 Feb 2020 02:39:20 +0800
+Subject: [PATCH 08/39] optimized openssl performance
+
+---
+ package/libs/openssl/Makefile | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/package/libs/openssl/Makefile b/package/libs/openssl/Makefile
+index 9696748106..8b2597de8f 100644
+--- a/package/libs/openssl/Makefile
++++ b/package/libs/openssl/Makefile
+@@ -340,7 +340,6 @@ define Build/Configure
+ 	)
+ endef
+ 
+-TARGET_CFLAGS += $(FPIC) -ffunction-sections -fdata-sections
+ TARGET_LDFLAGS += -Wl,--gc-sections
+ 
+ define Build/Compile
+@@ -348,7 +347,7 @@ define Build/Compile
+ 		CROSS_COMPILE="$(TARGET_CROSS)" \
+ 		CC="$(TARGET_CC)" \
+ 		SOURCE_DATE_EPOCH=$(SOURCE_DATE_EPOCH) \
+-		OPENWRT_OPTIMIZATION_FLAGS="$(TARGET_CFLAGS)" \
++		OPENWRT_OPTIMIZATION_FLAGS="-Wno-error=unused-but-set-variable -Wno-error=unused-result -O3 -ffunction-sections -fdata-sections" \
+ 		$(OPENSSL_MAKEFLAGS) \
+ 		all
+ 	$(MAKE) -C $(PKG_BUILD_DIR) \
+-- 
+2.28.0.windows.1
+

@@ -1,0 +1,24 @@
+From 72770d7ada1fdc4fb67e9c5d635e951fd48f072b Mon Sep 17 00:00:00 2001
+From: Lawrence-Tang <tangzongsheng@gmail.com>
+Date: Tue, 25 Feb 2020 00:44:11 +0800
+Subject: [PATCH 14/39] rk3328: set cpu scaling_governor to ondemand
+
+---
+ .../linux/rockchip-rk3328/base-files/etc/init.d/fa-rk3328-misc  | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/target/linux/rockchip-rk3328/base-files/etc/init.d/fa-rk3328-misc b/target/linux/rockchip-rk3328/base-files/etc/init.d/fa-rk3328-misc
+index 0a52db347a..af44f78a86 100755
+--- a/target/linux/rockchip-rk3328/base-files/etc/init.d/fa-rk3328-misc
++++ b/target/linux/rockchip-rk3328/base-files/etc/init.d/fa-rk3328-misc
+@@ -4,6 +4,6 @@ START=96
+  
+ start() {
+     [ -f /proc/irq/28/smp_affinity ] && echo 8 > /proc/irq/28/smp_affinity
+-    echo performance > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
++    echo ondemand > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
+ }
+ 
+-- 
+2.28.0.windows.1
+

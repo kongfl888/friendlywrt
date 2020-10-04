@@ -1,0 +1,93 @@
+From 220a334f7472ca4ae615f55075d11c2a8c8b3333 Mon Sep 17 00:00:00 2001
+From: Lawrence-Tang <tangzongsheng@gmail.com>
+Date: Thu, 12 Dec 2019 13:09:27 +0800
+Subject: [PATCH 03/39] fix wifi ap issue via service
+
+---
+ package/base-files/files/etc/init.d/fa-wifiap | 13 ++++++
+ .../base-files/files/etc/rc.d/S11fa-wifiap    |  1 +
+ .../base-files/files/usr/bin/fix_wifi_ap.sh   | 43 +++++++++++++++++++
+ 3 files changed, 57 insertions(+)
+ create mode 100755 package/base-files/files/etc/init.d/fa-wifiap
+ create mode 120000 package/base-files/files/etc/rc.d/S11fa-wifiap
+ create mode 100755 package/base-files/files/usr/bin/fix_wifi_ap.sh
+
+diff --git a/package/base-files/files/etc/init.d/fa-wifiap b/package/base-files/files/etc/init.d/fa-wifiap
+new file mode 100755
+index 0000000000..20f226f0c6
+--- /dev/null
++++ b/package/base-files/files/etc/init.d/fa-wifiap
+@@ -0,0 +1,13 @@
++#!/bin/sh /etc/rc.common
++
++START=11
++STOP=15
++ 
++start() {
++	echo "fa-wifiap started"
++	/bin/sh /usr/bin/fix_wifi_ap.sh > /dev/null&
++}
++
++stop() {
++	echo "fa-wifiap: do nothing"
++}
+diff --git a/package/base-files/files/etc/rc.d/S11fa-wifiap b/package/base-files/files/etc/rc.d/S11fa-wifiap
+new file mode 120000
+index 0000000000..de59c87993
+--- /dev/null
++++ b/package/base-files/files/etc/rc.d/S11fa-wifiap
+@@ -0,0 +1 @@
++../init.d/fa-wifiap
+\ No newline at end of file
+diff --git a/package/base-files/files/usr/bin/fix_wifi_ap.sh b/package/base-files/files/usr/bin/fix_wifi_ap.sh
+new file mode 100755
+index 0000000000..b76374171c
+--- /dev/null
++++ b/package/base-files/files/usr/bin/fix_wifi_ap.sh
+@@ -0,0 +1,43 @@
++#!/bin/sh
++
++#
++# Fix loss of AP mode fails 
++#
++
++TIMEOUT=30
++SLEEP=3
++try_times=0
++DEVICENAME=phy0
++
++logger -t fix_wifi_ap "enter fix_wifi_ap.sh"
++if [ $(uci get wireless.default_radio0.mode | grep -c "ap") -eq 1 ]; then
++    while [ $(iwinfo | grep -c "ESSID: unknown") -ge 1 ]; do
++        let try_times=$try_times+1
++        logger -t fix_wifi_ap "loop times: ${try_times}"
++        if [ -f /var/run/hostapd-phy0.conf ]; then
++            logger -t fix_wifi_ap "found hostapd-phy0.conf"
++    	# same as /etc/hotplug.d/ieee80211/20-hostapd
++    	if [ -f /var/run/hostapd-${DEVICENAME}.pid ]; then
++                kill $(cat /var/run/hostapd-${DEVICENAME}.pid)
++    	    rm -rf /var/run/hostapd-${DEVICENAME}.pid
++            fi
++            logger -t fix_wifi_ap "force kill hostapd"
++            killall hostapd
++            if [ -d /var/run/hostapd-${DEVICENAME} ]; then
++                rm -rf /var/run/hostapd-${DEVICENAME}
++            fi
++            logger -t fix_wifi_ap "re-run hostapd"
++            /usr/sbin/hostapd -s -n phy0 -P /var/run/hostapd-${DEVICENAME}.pid -B /var/run/hostapd-phy0.conf
++        fi
++
++        if [ $((try_times * SLEEP)) -ge $TIMEOUT ]; then
++            break
++        fi
++        sleep $SLEEP
++    done
++else
++    logger -t fix_wifi_ap "do nothing, wireless.default_radio0.mode is not ap"
++fi
++
++logger -t fix_wifi_ap "leave fix_wifi_ap.sh"
++
+-- 
+2.28.0.windows.1
+

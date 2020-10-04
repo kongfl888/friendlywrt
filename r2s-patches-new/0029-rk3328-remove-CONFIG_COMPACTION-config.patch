@@ -1,0 +1,25 @@
+From 9eab06e7d14822067398fb0d2e31c54e13dd8e77 Mon Sep 17 00:00:00 2001
+From: Chuck <fanck0605@qq.com>
+Date: Fri, 8 May 2020 17:05:50 +0800
+Subject: [PATCH 29/39] rk3328: remove CONFIG_COMPACTION config
+
+CONFIG_COMPACTION is already moved to generic config-4.14
+---
+ target/linux/rockchip-rk3328/config-4.14 | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/target/linux/rockchip-rk3328/config-4.14 b/target/linux/rockchip-rk3328/config-4.14
+index fd627d6a26..09d22d517f 100644
+--- a/target/linux/rockchip-rk3328/config-4.14
++++ b/target/linux/rockchip-rk3328/config-4.14
+@@ -120,7 +120,6 @@ CONFIG_COMMON_CLK=y
+ CONFIG_COMMON_CLK_CS2000_CP=y
+ # CONFIG_COMMON_CLK_VERSATILE is not set
+ CONFIG_COMMON_CLK_XGENE=y
+-CONFIG_COMPACTION=y
+ CONFIG_COMPAT=y
+ CONFIG_COMPAT_BINFMT_ELF=y
+ CONFIG_COMPAT_NETLINK_MESSAGES=y
+-- 
+2.28.0.windows.1
+

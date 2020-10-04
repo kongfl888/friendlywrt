@@ -1,0 +1,41 @@
+From c4bf7daa831403f6c44387d11cec1d1b992a68ea Mon Sep 17 00:00:00 2001
+From: Lawrence-Tang <tangzongsheng@gmail.com>
+Date: Sun, 23 Feb 2020 00:07:31 +0800
+Subject: [PATCH 11/39] rk3328: re-enabled ethernet offloading
+
+---
+ .../iface/12-disable-rk3328-eth-offloading    | 22 -------------------
+ 1 file changed, 22 deletions(-)
+ delete mode 100644 target/linux/rockchip-rk3328/base-files/etc/hotplug.d/iface/12-disable-rk3328-eth-offloading
+
+diff --git a/target/linux/rockchip-rk3328/base-files/etc/hotplug.d/iface/12-disable-rk3328-eth-offloading b/target/linux/rockchip-rk3328/base-files/etc/hotplug.d/iface/12-disable-rk3328-eth-offloading
+deleted file mode 100644
+index 5eb25c653a..0000000000
+--- a/target/linux/rockchip-rk3328/base-files/etc/hotplug.d/iface/12-disable-rk3328-eth-offloading
++++ /dev/null
+@@ -1,22 +0,0 @@
+-#!/bin/sh
+-
+-. /lib/functions.sh
+-. /lib/functions/network.sh
+-
+-[ -n "$INTERFACE" ] || exit 3
+-[ "$INTERFACE" == "wan" ] || exit 4
+-[ "$ACTION" == "ifup" ] || exit 1
+-
+-BOARD=$(cat /tmp/sysinfo/board_name | cut -d , -f2)
+-logger -t disable-offloading "board = $BOARD"
+-[ "$BOARD" == "nanopi-r2" -o "$BOARD" == "nanopi-r2s" ] || exit 2
+-logger -t disable-offloading "rk3328 board detected"
+-
+-ETHTOOL=/usr/sbin/ethtool
+-[ -f $ETHTOOL ] || exit 5
+-
+-[ -d /sys/devices/platform/ff540000.ethernet/net/eth0 ] || exit 6
+-$ETHTOOL -K eth0 rx off tx off
+-
+-logger -t disable-offloading "disabed rk3328 ethernet tcp/udp offloading tx/rx"
+-exit 0
+-- 
+2.28.0.windows.1
+

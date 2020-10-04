@@ -1,0 +1,64 @@
+From 433da806d63654a420d185b8dc8862d7fc6bf522 Mon Sep 17 00:00:00 2001
+From: Lawrence-Tang <tangzongsheng@gmail.com>
+Date: Tue, 14 Apr 2020 13:30:50 +0800
+Subject: [PATCH 26/39] rk3328: add support for rtl8822bu
+
+---
+ .../files/etc/hotplug.d/usb/31-usb_wifi       | 22 +++++++++++++++----
+ .../base-files/etc/modules.d/10-rtl8822bu     |  1 +
+ 2 files changed, 19 insertions(+), 4 deletions(-)
+ create mode 100755 target/linux/rockchip-rk3328/base-files/etc/modules.d/10-rtl8822bu
+
+diff --git a/package/base-files/files/etc/hotplug.d/usb/31-usb_wifi b/package/base-files/files/etc/hotplug.d/usb/31-usb_wifi
+index 3aecad3d9a..0cea5b820b 100644
+--- a/package/base-files/files/etc/hotplug.d/usb/31-usb_wifi
++++ b/package/base-files/files/etc/hotplug.d/usb/31-usb_wifi
+@@ -1,10 +1,18 @@
+ #!/bin/sh
+ 
+-#logger ACTION=$ACTION DEVPATH=$DEVPATH SUBSYSTEM=$SUBSYSTEM DEVTYPE=$DEVTYPE PRODUCT=$PRODUCT MODALIAS=$MODALIAS
++logger ACTION=$ACTION DEVPATH=$DEVPATH SUBSYSTEM=$SUBSYSTEM DEVTYPE=$DEVTYPE PRODUCT=$PRODUCT MODALIAS=$MODALIAS
+ 
+ FE_DIR=/root/.friendlyelec/
+-if { [ "${DEVTYPE}" = usb_device ] || [ "${DEVTYPE}" = usb_interface ] ;} && { [ "${PRODUCT}" = "bda/c811/200" ] || [ "${PRODUCT}" = "bda/c820/200" ] ;}; then
+-    MODULE=rtl8821cu
++if { [ "${DEVTYPE}" = usb_device ] || [ "${DEVTYPE}" = usb_interface ] ;} \
++    && { [ "${PRODUCT}" = "bda/b812/210" ] || [ "${PRODUCT}" = "bda/c811/200" ] || [ "${PRODUCT}" = "bda/c820/200" ] ;}; then
++    MODULE=Realtek
++    if [ "${PRODUCT}" = "bda/b812/210" ]; then
++        MODULE=rtl8822bu
++    elif [ "${PRODUCT}" = "bda/c811/200" ]; then
++        MODULE=rtl8821cu
++    elif [ "${PRODUCT}" = "bda/c820/200" ]; then
++	    MODULE=realtek-c820
++    fi
+     TARGET=wlan${MODULE}
+ 
+     WIFI_PATH=`echo ${DEVPATH} | cut -d/ -f 3-`
+@@ -31,9 +39,15 @@ if { [ "${DEVTYPE}" = usb_device ] || [ "${DEVTYPE}" = usb_interface ] ;} && { [
+ 
+             # Enable wifi and change ssid
+             if [ -n "`uci get wireless.${RADIO}`" ]; then
++
++                # FIXME: Since these USB wifi is too slow in 5g mode, use 2.4G instead
+                 uci batch <<EOF
++set wireless.${RADIO}.hwmode='11g'
++set wireless.${RADIO}.htmode='HT20'
++set wireless.${RADIO}.channel='7'
++set wireless.${RADIO}.country='00'
+ set wireless.${RADIO}.disabled=0
+-set wireless.default_${RADIO}.ssid=${MODULE}-${ADDRESS}
++set wireless.default_${RADIO}.ssid=FriendlyWrt-${ADDRESS}
+ set wireless.default_${RADIO}.encryption=psk2
+ set wireless.default_${RADIO}.key=password
+ EOF
+diff --git a/target/linux/rockchip-rk3328/base-files/etc/modules.d/10-rtl8822bu b/target/linux/rockchip-rk3328/base-files/etc/modules.d/10-rtl8822bu
+new file mode 100755
+index 0000000000..f7ffc0d53d
+--- /dev/null
++++ b/target/linux/rockchip-rk3328/base-files/etc/modules.d/10-rtl8822bu
+@@ -0,0 +1 @@
++rtl8822bu
+-- 
+2.28.0.windows.1
+

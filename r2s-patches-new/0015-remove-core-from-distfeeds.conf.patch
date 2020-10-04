@@ -1,0 +1,25 @@
+From 22e504915a0826e666aed87416260953054f99bb Mon Sep 17 00:00:00 2001
+From: Lawrence-Tang <tangzongsheng@gmail.com>
+Date: Tue, 25 Feb 2020 02:25:37 +0800
+Subject: [PATCH 15/39] remove core from distfeeds.conf
+
+---
+ include/feeds.mk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/include/feeds.mk b/include/feeds.mk
+index 9637424c5b..310b0038ca 100644
+--- a/include/feeds.mk
++++ b/include/feeds.mk
+@@ -33,7 +33,7 @@ endef
+ # 1: destination file
+ define FeedSourcesAppend
+ ( \
+-  echo 'src/gz %d_core %U/targets/%S/packages'; \
++  echo '# src/gz %d_core %U/targets/%S/packages'; \
+   $(strip $(if $(CONFIG_PER_FEED_REPO), \
+ 	echo 'src/gz %d_base %U/packages/%A/base'; \
+ 	$(foreach feed,$(FEEDS_AVAILABLE), \
+-- 
+2.28.0.windows.1
+

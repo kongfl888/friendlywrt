@@ -1,0 +1,100 @@
+From 74982b07858ebdfeb7d8097a9459309e8ab9996d Mon Sep 17 00:00:00 2001
+From: Lawrence-Tang <tangzongsheng@gmail.com>
+Date: Tue, 18 Feb 2020 17:52:55 +0800
+Subject: [PATCH 07/39] rk3328: added support for pwm fan
+
+# Conflicts:
+#	target/linux/rockchip-rk3399/base-files/usr/bin/start-rk3399-pwm-fan.sh
+---
+ .../base-files/etc/init.d/fa-rk3328-pwmfan    |  9 +++++++
+ .../base-files/etc/rc.d/S96fa-rk3328-pwmfan   |  1 +
+ ...399-pwm-fan.sh => start-rk3328-pwm-fan.sh} | 27 +++++++++++--------
+ 3 files changed, 26 insertions(+), 11 deletions(-)
+ create mode 100755 target/linux/rockchip-rk3328/base-files/etc/init.d/fa-rk3328-pwmfan
+ create mode 120000 target/linux/rockchip-rk3328/base-files/etc/rc.d/S96fa-rk3328-pwmfan
+ rename target/linux/rockchip-rk3328/base-files/usr/bin/{start-rk3399-pwm-fan.sh => start-rk3328-pwm-fan.sh} (54%)
+
+diff --git a/target/linux/rockchip-rk3328/base-files/etc/init.d/fa-rk3328-pwmfan b/target/linux/rockchip-rk3328/base-files/etc/init.d/fa-rk3328-pwmfan
+new file mode 100755
+index 0000000000..dd07aa1335
+--- /dev/null
++++ b/target/linux/rockchip-rk3328/base-files/etc/init.d/fa-rk3328-pwmfan
+@@ -0,0 +1,9 @@
++#!/bin/sh /etc/rc.common
++
++START=96
++ 
++start() {
++	echo "fa-pwmfan started"
++	/usr/bin/start-rk3328-pwm-fan.sh > /dev/null&
++}
++
+diff --git a/target/linux/rockchip-rk3328/base-files/etc/rc.d/S96fa-rk3328-pwmfan b/target/linux/rockchip-rk3328/base-files/etc/rc.d/S96fa-rk3328-pwmfan
+new file mode 120000
+index 0000000000..4faadd728c
+--- /dev/null
++++ b/target/linux/rockchip-rk3328/base-files/etc/rc.d/S96fa-rk3328-pwmfan
+@@ -0,0 +1 @@
++../init.d/fa-rk3328-pwmfan
+\ No newline at end of file
+diff --git a/target/linux/rockchip-rk3328/base-files/usr/bin/start-rk3399-pwm-fan.sh b/target/linux/rockchip-rk3328/base-files/usr/bin/start-rk3328-pwm-fan.sh
+similarity index 54%
+rename from target/linux/rockchip-rk3328/base-files/usr/bin/start-rk3399-pwm-fan.sh
+rename to target/linux/rockchip-rk3328/base-files/usr/bin/start-rk3328-pwm-fan.sh
+index 311b4c15da..7b205843a7 100755
+--- a/target/linux/rockchip-rk3328/base-files/usr/bin/start-rk3399-pwm-fan.sh
++++ b/target/linux/rockchip-rk3328/base-files/usr/bin/start-rk3328-pwm-fan.sh
+@@ -1,24 +1,29 @@
+ #!/bin/bash
+ 
+-if [ ! -d /sys/class/pwm/pwmchip1/pwm0 ]; then
+-    echo 0 > /sys/class/pwm/pwmchip1/export
++if [ ! -d /sys/class/pwm/pwmchip0 ]; then
++    echo "this model does not support pwm."
++    exit 1
++fi
++
++if [ ! -d /sys/class/pwm/pwmchip0/pwm0 ]; then
++    echo -n 0 > /sys/class/pwm/pwmchip0/export
+ fi
+ sleep 1
+-while [ ! -d /sys/class/pwm/pwmchip1/pwm0 ];
++while [ ! -d /sys/class/pwm/pwmchip0/pwm0 ];
+ do
+     sleep 1
+ done
+-ISENABLE=`cat /sys/class/pwm/pwmchip1/pwm0/enable`
++ISENABLE=`cat /sys/class/pwm/pwmchip0/pwm0/enable`
+ if [ $ISENABLE -eq 1 ]; then
+-    echo 0 > /sys/class/pwm/pwmchip1/pwm0/enable
++    echo -n 0 > /sys/class/pwm/pwmchip0/pwm0/enable
+ fi
+-echo 50000 > /sys/class/pwm/pwmchip1/pwm0/period
+-echo 1 > /sys/class/pwm/pwmchip1/pwm0/enable
++echo -n 50000 > /sys/class/pwm/pwmchip0/pwm0/period
++echo -n 1 > /sys/class/pwm/pwmchip0/pwm0/enable
+ 
+ # max speed run 5s
+-echo 46990 > /sys/class/pwm/pwmchip1/pwm0/duty_cycle
++echo -n 46990 > /sys/class/pwm/pwmchip0/pwm0/duty_cycle
+ sleep 5
+-echo 25000 > /sys/class/pwm/pwmchip1/pwm0/duty_cycle
++echo -n 25000 > /sys/class/pwm/pwmchip0/pwm0/duty_cycle
+ 
+ # declare -a CpuTemps=(55000 43000 38000 32000)
+ # declare -a PwmDutyCycles=(1000 20000 30000 45000)
+@@ -50,9 +55,9 @@ do
+ 		PERCENT=${Percents[$i]}
+ 	fi
+ 
+-	echo $DUTY > /sys/class/pwm/pwmchip1/pwm0/duty_cycle;
++	echo -n $DUTY > /sys/class/pwm/pwmchip0/pwm0/duty_cycle;
+ 
+-        # echo "temp: $temp, duty: $DUTY, ${PERCENT}%"
++        echo "temp: $temp, duty: $DUTY, ${PERCENT}%"
+         # cat /sys/devices/system/cpu/cpu*/cpufreq/cpuinfo_cur_freq
+ 
+ 	sleep 2s;
+-- 
+2.28.0.windows.1
+

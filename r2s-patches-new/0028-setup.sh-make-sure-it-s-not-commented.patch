@@ -1,0 +1,29 @@
+From d6cdd2134ca5320f96dace090e07e4197cd89923 Mon Sep 17 00:00:00 2001
+From: Chuck <fanck0605@qq.com>
+Date: Wed, 15 Apr 2020 12:33:31 +0800
+Subject: [PATCH 28/39] setup.sh: make sure it's not commented
+
+If I had already commented `invalid users`, there would have been two `#` in front of it.
+---
+ package/base-files/files/root/setup.sh | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/package/base-files/files/root/setup.sh b/package/base-files/files/root/setup.sh
+index 8aed2c49f5..ff63d7fce6 100644
+--- a/package/base-files/files/root/setup.sh
++++ b/package/base-files/files/root/setup.sh
+@@ -118,9 +118,9 @@ if [ ${ENABLE_SIMPLIFIED_SETTINGS} -eq 1 ]; then
+         uci set samba.@samba[0].description='FriendlyWrt'
+         uci set samba.@samba[0].homes='1'
+         # samba: allow root access
+-        sed -i -e "/\sinvalid users\s/s/^/#/" /etc/samba/smb.conf.template
++        sed -i -e "/^\s*invalid users\s/s/^/#/" /etc/samba/smb.conf.template
+         # samba: accessible by lan and wan
+-        sed -i -e "/\sinterfaces\s/s/^/#/" /etc/samba/smb.conf.template
++        sed -i -e "/^\s*interfaces\s/s/^/#/" /etc/samba/smb.conf.template
+         # samba: set default password to 'password'
+         echo "root:0:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX:8846F7EAEE8FB117AD06BDD830B7586C:[U          ]:LCT-00000001:" > /etc/samba/smbpasswd
+         sed -i '1 i ' /etc/samba/smb.conf.template
+-- 
+2.28.0.windows.1
+

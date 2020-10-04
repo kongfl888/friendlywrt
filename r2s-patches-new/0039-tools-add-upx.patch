@@ -1,0 +1,135 @@
+From 47f8bba8e52458ebd617664904c4342b61195c83 Mon Sep 17 00:00:00 2001
+From: kongfl888 K <kongfl888@outlook.com>
+Date: Wed, 9 Sep 2020 21:05:33 +0800
+Subject: [PATCH 39/39] tools: add upx.
+
+Signed-off-by: kongfl888 K <kongfl888@outlook.com>
+---
+ tools/Makefile     |  2 ++
+ tools/ucl/Makefile | 51 ++++++++++++++++++++++++++++++++++++++++++++++
+ tools/upx/Makefile | 35 +++++++++++++++++++++++++++++++
+ 3 files changed, 88 insertions(+)
+ create mode 100644 tools/ucl/Makefile
+ create mode 100644 tools/upx/Makefile
+
+diff --git a/tools/Makefile b/tools/Makefile
+index 65bec34c1b..118268777b 100644
+--- a/tools/Makefile
++++ b/tools/Makefile
+@@ -26,6 +26,7 @@ tools-y += e2fsprogs fakeroot findutils firmware-utils flex gengetopt
+ tools-y += libressl libtool lzma m4 make-ext4fs missing-macros mkimage
+ tools-y += mklibs mm-macros mtd-utils mtools padjffs2 patch-image
+ tools-y += patchelf pkgconf quilt squashfskit4 sstrip zip zlib zstd
++tools-y += ucl upx
+ tools-$(BUILD_B43_TOOLS) += b43-tools
+ tools-$(BUILD_ISL) += isl
+ tools-$(BUILD_TOOLCHAIN) += expat gmp libelf mpc mpfr
+@@ -73,6 +74,7 @@ $(curdir)/sdcc/compile := $(curdir)/bison/compile
+ $(curdir)/squashfs/compile := $(curdir)/lzma-old/compile
+ $(curdir)/squashfskit4/compile := $(curdir)/xz/compile $(curdir)/zlib/compile
+ $(curdir)/zlib/compile := $(curdir)/cmake/compile
++$(curdir)/upx/compile := $(curdir)/ucl/compile
+ 
+ ifneq ($(HOST_OS),Linux)
+   $(curdir)/squashfskit4/compile += $(curdir)/coreutils/compile
+diff --git a/tools/ucl/Makefile b/tools/ucl/Makefile
+new file mode 100644
+index 0000000000..9fb9aec117
+--- /dev/null
++++ b/tools/ucl/Makefile
+@@ -0,0 +1,51 @@
++#
++# Copyright (C) 2019 OpenWrt.org
++#
++# This is free software, licensed under the GNU General Public License v2.
++# See /LICENSE for more information.
++#
++include $(TOPDIR)/rules.mk
++
++PKG_NAME:=ucl
++PKG_VERSION:=1.03
++
++PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
++PKG_SOURCE_URL:=http://www.oberhumer.com/opensource/ucl/download/$(PKG_SOURCE)
++PKG_HASH:=b865299ffd45d73412293369c9754b07637680e5c826915f097577cd27350348
++
++HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/$(PKG_NAME)-$(PKG_VERSION)
++
++include $(INCLUDE_DIR)/host-build.mk
++
++HOSTCC :=gcc
++HOST_CFLAGS +=-std=gnu89
++
++define Host/Prepare
++	$(Host/Prepare/Default)
++	mkdir -p $(STAGING_DIR_HOST)/include/ucl
++endef
++
++define Host/Configure
++	(cd $(HOST_BUILD_DIR); \
++	CC="$(HOSTCC)" \
++	CFLAGS="$(HOST_CFLAGS)" \
++	./configure --prefix=$(STAGING_DIR_HOST) \
++	);
++	$(call Host/Configure/Default)
++endef
++
++define Host/Compile
++	$(MAKE) -C $(HOST_BUILD_DIR)
++endef
++
++define Host/Install
++	$(MAKE) -C $(HOST_BUILD_DIR) install
++endef
++
++define Host/Clean
++	$(MAKE) -C $(HOST_BUILD_DIR) uninstall
++	rm -rf $(HOST_BUILD_DIR)
++	rm -rf $(STAGING_DIR_HOST)/include/ucl
++endef
++
++$(eval $(call HostBuild))
+diff --git a/tools/upx/Makefile b/tools/upx/Makefile
+new file mode 100644
+index 0000000000..b821d4ca78
+--- /dev/null
++++ b/tools/upx/Makefile
+@@ -0,0 +1,35 @@
++#
++# Copyright (C) 2011-2020 OpenWrt.org
++#
++# This is free software, licensed under the GNU General Public License v2.
++# See /LICENSE for more information.
++#
++include $(TOPDIR)/rules.mk
++
++PKG_NAME:=upx
++PKG_VERSION:=3.96
++
++PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-src.tar.xz
++PKG_SOURCE_URL:=https://github.com/upx/upx/releases/download/v$(PKG_VERSION)
++PKG_HASH:=47774df5c958f2868ef550fb258b97c73272cb1f44fe776b798e393465993714
++
++HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/$(PKG_NAME)-$(PKG_VERSION)-src
++
++include $(INCLUDE_DIR)/host-build.mk
++
++define Host/Compile
++	UPX_UCLDIR=$(STAGING_DIR_HOST) \
++	$(MAKE) -C $(HOST_BUILD_DIR)/src \
++		CXXFLAGS_WERROR="" LDFLAGS="$(HOST_LDFLAGS)" \
++		CXX="$(HOSTCXX)"
++endef
++
++define Host/Install
++	$(CP) $(HOST_BUILD_DIR)/src/upx.out $(STAGING_DIR_HOST)/bin/upx
++endef
++
++define Host/Clean
++	rm -f $(STAGING_DIR_HOST)/bin/upx
++endef
++
++$(eval $(call HostBuild))
+-- 
+2.28.0.windows.1
+

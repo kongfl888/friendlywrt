@@ -1,0 +1,25 @@
+From b923d81f5b5fb4b76dbb8e472c153e2a5d677727 Mon Sep 17 00:00:00 2001
+From: Soff <soffchen@gmail.com>
+Date: Fri, 28 Feb 2020 00:21:43 +0800
+Subject: [PATCH 21/39] Fix DEVTYPE, works fully now
+
+---
+ package/base-files/files/etc/hotplug.d/usb/31-usb_wifi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/package/base-files/files/etc/hotplug.d/usb/31-usb_wifi b/package/base-files/files/etc/hotplug.d/usb/31-usb_wifi
+index b10ef09ef1..9243993607 100644
+--- a/package/base-files/files/etc/hotplug.d/usb/31-usb_wifi
++++ b/package/base-files/files/etc/hotplug.d/usb/31-usb_wifi
+@@ -3,7 +3,7 @@
+ #logger ACTION=$ACTION DEVPATH=$DEVPATH SUBSYSTEM=$SUBSYSTEM DEVTYPE=$DEVTYPE PRODUCT=$PRODUCT MODALIAS=$MODALIAS
+ 
+ FE_DIR=/root/.friendlyelec/
+-if [ "${DEVTYPE}" = usb_device ] && { [ "${PRODUCT}" = "bda/c811/200" ] || [ "${PRODUCT}" = "bda/c820/200" ] ;}; then
++if [ "${DEVTYPE}" = usb_interface ] && { [ "${PRODUCT}" = "bda/c811/200" ] || [ "${PRODUCT}" = "bda/c820/200" ] ;}; then
+     MODULE=rtl8821cu
+     TARGET=wlan${MODULE}
+ 
+-- 
+2.28.0.windows.1
+

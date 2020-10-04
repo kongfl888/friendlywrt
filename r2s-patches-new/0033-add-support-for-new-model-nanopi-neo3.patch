@@ -1,0 +1,48 @@
+From a33fa480b019b23146dcde8bd819b3d5357c18ed Mon Sep 17 00:00:00 2001
+From: Lawrence-Tang <tangzongsheng@gmail.com>
+Date: Thu, 28 May 2020 17:39:15 +0800
+Subject: [PATCH 33/39] add support for new model: nanopi-neo3
+
+---
+ .../rockchip-rk3328/base-files/etc/board.d/02_network  |  3 +++
+ .../hotplug.d/iface/12-disable-rk3328-eth-offloading   | 10 +++++++++-
+ 2 files changed, 12 insertions(+), 1 deletion(-)
+
+diff --git a/target/linux/rockchip-rk3328/base-files/etc/board.d/02_network b/target/linux/rockchip-rk3328/base-files/etc/board.d/02_network
+index c9d9478c88..dada864f48 100755
+--- a/target/linux/rockchip-rk3328/base-files/etc/board.d/02_network
++++ b/target/linux/rockchip-rk3328/base-files/etc/board.d/02_network
+@@ -12,6 +12,9 @@ case "$(board_name)" in
+ |"friendlyelec,nanopi-r2s")
+     ucidef_set_interfaces_lan_wan "eth1" "eth0"
+ 	;;
++"friendlyelec,nanopi-neo3")
++    ucidef_set_interface_wan 'eth0'
++    ;;
+ *)
+ 	ucidef_set_interface_wan 'eth0'
+ 	;;
+diff --git a/target/linux/rockchip-rk3328/base-files/etc/hotplug.d/iface/12-disable-rk3328-eth-offloading b/target/linux/rockchip-rk3328/base-files/etc/hotplug.d/iface/12-disable-rk3328-eth-offloading
+index 5eb25c653a..835208489b 100644
+--- a/target/linux/rockchip-rk3328/base-files/etc/hotplug.d/iface/12-disable-rk3328-eth-offloading
++++ b/target/linux/rockchip-rk3328/base-files/etc/hotplug.d/iface/12-disable-rk3328-eth-offloading
+@@ -9,7 +9,15 @@
+ 
+ BOARD=$(cat /tmp/sysinfo/board_name | cut -d , -f2)
+ logger -t disable-offloading "board = $BOARD"
+-[ "$BOARD" == "nanopi-r2" -o "$BOARD" == "nanopi-r2s" ] || exit 2
++
++case $BOARD in
++"nanopi-r2"|"nanopi-r2s"|"nanopi-neo3")
++    logger -t disable-offloading "continue..."
++    ;;
++*)
++    exit 2
++esac
++
+ logger -t disable-offloading "rk3328 board detected"
+ 
+ ETHTOOL=/usr/sbin/ethtool
+-- 
+2.28.0.windows.1
+

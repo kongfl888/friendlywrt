@@ -1,0 +1,42 @@
+From b385b131fd6447fe592b283ca7e9c0ba9754bed1 Mon Sep 17 00:00:00 2001
+From: Lawrence-Tang <tangzongsheng@gmail.com>
+Date: Sun, 19 Jan 2020 15:13:43 +0800
+Subject: [PATCH 05/39] rk3399: create virtual-interface wlan1 for
+ t4/m4/som-rk3399
+
+---
+ .../hotplug.d/ieee80211/09-wireless-bcm4356   | 22 +++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+ create mode 100755 package/base-files/files/etc/hotplug.d/ieee80211/09-wireless-bcm4356
+
+diff --git a/package/base-files/files/etc/hotplug.d/ieee80211/09-wireless-bcm4356 b/package/base-files/files/etc/hotplug.d/ieee80211/09-wireless-bcm4356
+new file mode 100755
+index 0000000000..92f2b7dce5
+--- /dev/null
++++ b/package/base-files/files/etc/hotplug.d/ieee80211/09-wireless-bcm4356
+@@ -0,0 +1,22 @@
++#!/bin/sh
++
++[ "${ACTION}" = "add" ] || exit 0
++
++FA_VID=`cat /sys/class/${SUBSYSTEM}/${DEVICENAME}/device/vendor`
++FA_PID=`cat /sys/class/${SUBSYSTEM}/${DEVICENAME}/device/device`
++[ ${FA_VID} = "0x02d0" ] || exit 0
++[ ${FA_PID} = "0x4356" ] || exit 0
++
++sleep 1
++FA_RETRY=0
++FA_MAX=10
++while [ ${FA_RETRY} -lt ${FA_MAX} ]; do
++    /usr/sbin/iw phy ${DEVICENAME} interface add wlan1 type station
++    if [ $? -eq 0 ]; then
++       break;
++    fi
++    let FA_RETRY=FA_RETRY+1
++    sleep 1
++done
++
++exit 0
+-- 
+2.28.0.windows.1
+
