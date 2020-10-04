@@ -1,0 +1,38 @@
+# [K] (c) 2020
+
+name: Test
+
+on:
+  schedule:
+    - cron: '10 */8 * * *'
+
+jobs:
+  merge:
+
+    runs-on: ubuntu-latest
+    if: github.repository == 'kongfl888/friendlywrt'
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@main
+      with:
+        ref: snapshot
+        fetch-depth: 0
+        lfs: true
+
+    - name: Set git identity
+      run : |
+        git config --global user.email "kongfl888@outlook.com"
+        git config --global user.name "kongfl888"
+    - name: Load upstream commits
+      run:  |
+        git checkout snapshot
+        git reset --hard origin/master-20201005
+        git remote add upstream https://github.com/openwrt/openwrt.git
+        git fetch upstream master
+        git rebase upstream/master
+    - name: Push Commits
+      env:
+        DOWNSTREAM_BRANCH: snapshot
+      run:  |
+        git push --force-with-lease origin $DOWNSTREAM_BRANCH
